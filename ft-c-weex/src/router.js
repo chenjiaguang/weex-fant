@@ -5,6 +5,7 @@ import Home from '@/views/home'
 import ArticleDetail from '@/views/articleDetail'
 import Message from '@/views/message'
 import Friend from '@/views/friend'
+import bindPhone from '@/views/bindPhone'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ module.exports = new Router({
       path: '/friend',
       name: 'Friend',
       component: Friend
+    },
+    {
+      path: '/phone/bind',
+      name: 'BindPhone',
+      component: bindPhone
     }
   ]
 })

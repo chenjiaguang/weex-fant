@@ -3,6 +3,8 @@
     <text class="greeting">The env is ready!</text>
     <text @click="navigate('home', '/home')">Home</text>
     <text @click="navigate('articleDetail', '/article/detail')">ArticleDetail</text>
+    <text @click="navigate('friend', '/friend')">friend</text>
+    <text @click="navigate('test', '/test')">test</text>
   </div>
 </template>
 
@@ -27,10 +29,6 @@ export default {
 </script>
 
 <style scoped>
-  .wrapper {
-    justify-content: center;
-    align-items: center;
-  }
   .greeting {
     text-align: center;
     margin-top: 70px;
