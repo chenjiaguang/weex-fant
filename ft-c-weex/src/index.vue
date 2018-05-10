@@ -7,6 +7,8 @@
       <text class="greeting">The env is ready!</text>
       <text @click="navigate('home', '/home')">Home</text>
       <text @click="navigate('articleDetail', '/article/detail')">ArticleDetail</text>
+      <text @click="navigate('friend', '/friend')">friend</text>
+      <text @click="navigate('test', '/test')">test</text>
     </div>
   </div>
 </template>
