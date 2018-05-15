@@ -1,10 +1,11 @@
+// TODO:clickInShare事件；logo图片；url读取参数
 <template>
-  <div class="wrapper" style="padding-bottom:188px">
-    <scroller style="padding-left: 30px;padding-right: 30px;" v-if="dynamic">
-      <detailHeader :data="dynamic"></detailHeader>
-      <dynamicArticleContent :dynamic="dynamic"></dynamicArticleContent>
-      <comments></comments>
-      <fixedWelcome></fixedWelcome>
+  <div class="wrapper">
+    <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" v-if="dynamic">
+      <detailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
+      <dynamicArticleContent :dynamic="dynamic"  style="margin-bottom:60px"></dynamicArticleContent>
+      <comments  style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
+      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </scroller>
   </div>
 </template>
@@ -15,6 +16,7 @@ import DynamicArticleContent from '../components/detail/DynamicArticleContent.vu
 import Comments from '../components/share/Comments.vue'
 import FixedWelcome from '../components/share/FixedWelcome.vue'
 const stream = weex.requireModule('stream')
+const modal = weex.requireModule('modal')
 export default {
   components: {
     detailHeader: Header,
@@ -30,7 +32,7 @@ export default {
   created () {
     stream.fetch({
       method: 'POST',
-      url: 'https://fanttest.fantuanlife.com/jv/anonymous/qz/dynamicarticle',
+      url: 'http://fanttest.fantuanlife.com/jv/anonymous/qz/dynamicarticle',
       type: 'json',
       headers: {
         'Content-Type': 'application/json'
@@ -41,6 +43,14 @@ export default {
       console.log(res)
       this.dynamic = res.data.data
     })
+  },
+  methods: {
+    clickInShare () {
+      modal.toast({
+        message: 'jump',
+        duration: 0.3
+      })
+    }
   }
 }
 </script>

@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="right">
-        <text class="go">立即打开</text>
+        <text class="go" @click="$emit('clickInShare')">立即打开</text>
       </div>
     </div>
   </div>
@@ -37,6 +37,8 @@ export default {
   bottom: 0;
   background-color: #262626;
   opacity: 0.8;
+
+  z-index:99999;
 
   /* border-top-width: 1px;
   border-top-color: #CBCBCB; */

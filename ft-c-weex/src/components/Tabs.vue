@@ -16,7 +16,6 @@
 </template>
 
 <script>
-var modal = weex.requireModule('modal')
 export default {
   props: ['tabs', 'align', 'selected', 'data'],
   data () {

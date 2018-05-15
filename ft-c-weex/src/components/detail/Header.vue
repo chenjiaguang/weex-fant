@@ -1,33 +1,27 @@
 <template>
   <div>
     <text class="title">{{data.title}}</text>
-    <div class="row space-between" style="margin-bottom: 80px;align-items:center;">
+    <div class="row space-between" style="align-items:center;">
       <!-- 左 -->
       <div class="row">
-        <a href="http://baidu.com">
-          <image class="avatar" :src="data.avatar"/>
-        </a>
+        <image class="avatar" :src="data.avatar" @click="clickUser(data.uid)"/>
         <div class="column space-between">
           <!-- 上 -->
           <div class="row">
-            <a href="http://baidu.com">
-              <text class="username">{{data.username}}</text>
-            </a>
+            <text class="username" @click="clickUser(data.uid)">{{data.username}}</text>
           </div>
           <!-- 下 -->
           <div class="row">
             <text class="time">{{data.time}}</text>
             <text class="fromPrefix" v-if="data.fromQz">发布于</text>
-            <a href="http://baidu.com">
-              <text class="fromQz" v-if="data.fromQz">{{data.fromQz}}</text>
-            </a>
+            <text class="fromQz" v-if="data.fromQz" @click="clickQz(data.circle_id)">{{data.fromQz}}</text>
           </div>
         </div>
       </div>
       <!-- 右 -->
       <div>
-        <text class="follow-button" v-if="!is_follow"  @click="is_follow=true">关注</text>
-        <text class="follow-cancel-button" v-if="is_follow"  @click="is_follow=false">已关注</text>
+        <text class="follow-button" v-if="!is_follow"  @click="clickFollow(data.uid)">关注</text>
+        <text class="follow-cancel-button" v-if="is_follow"  @click="clickUnFollow(data.uid)">已关注</text>
       </div>
     </div>
   </div>
@@ -35,10 +29,37 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: {
+    data: Object,
+    in_share: {
+      type: Boolean,
+      default: true
+    }},
   data () {
     return {
       is_follow: false
+    }
+  },
+  methods: {
+    clickUser (uid) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
+    },
+    clickQz (qzId) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
+    },
+    clickFollow (uid) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
+    },
+    clickUnFollow (uid) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
     }
   }
 }

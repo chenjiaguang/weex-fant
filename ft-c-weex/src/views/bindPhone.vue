@@ -78,7 +78,7 @@ export default {
                 message: res.msg,
                 duration: 2
               })
-            } else if (res && !Boolean(res.error)) {
+            } else if (res && !res.error) {
               this.$refs['codeInput'].resetCount()
             }
           },
@@ -125,7 +125,7 @@ export default {
                 message: res.msg,
                 duration: 2
               })
-            } else if (res && !Boolean(res.error)) {
+            } else if (res && !res.error) {
               // 进入登陆后页面
             }
           },
