@@ -15,6 +15,7 @@ module.exports = (url, formData = {}, callback = {}) => {
     type:'json',
     body: JSON.stringify(formData)
   }, function (res) {
+    if (callback.after instanceof Function) callback.after()
     if (res.ok) {
       callback.success && callback.success(res.data)
     } else {

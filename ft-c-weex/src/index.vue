@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="inner-wrapper" v-if="platform === 'web'">
+    <div class="inner-wrapper" style="flex:1;width:750px;" v-if="platform === 'web'">
       <router-view></router-view>
     </div>
     <div class="inner-wrapper" v-else>
@@ -8,7 +8,11 @@
       <text @click="navigate('home', '/home')">Home</text>
       <text @click="navigate('articleDetail', '/article/detail')">ArticleDetail</text>
       <text @click="navigate('friend', '/friend')">friend</text>
-      <text @click="navigate('test', '/test')">test</text>
+      <text @click="navigate('bindPhone', '/phone/bind')">bindPhone</text>
+      <text @click="navigate('identifyPhone', '/phone/identify')">identifyPhone</text>
+      <text @click="navigate('applyToutiao', '/toutiao/apply')">applyToutiao</text>
+      <text @click="navigate('applyToutiaoSelect', '/toutiao/select')">applyToutiaoSelect</text>
+      <text @click="navigate('applyToutiaoForm', '/toutiao/form')">applyToutiaoForm</text>
     </div>
   </div>
 </template>
@@ -36,6 +40,9 @@ export default {
 </script>
 
 <style scoped>
+  .wrapper{
+    flex:1;
+  }
   .greeting {
     text-align: center;
     margin-top: 70px;
