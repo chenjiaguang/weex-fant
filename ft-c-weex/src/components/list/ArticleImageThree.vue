@@ -1,22 +1,37 @@
 <template>
-  <div class="article-box">
-    <text class="article-content">{{article.content}}</text>
-    <div class="article-image-box row" >
-      <image class="article-image" :src="image" v-for="(image,index) in article.images" :key="index" />
+  <div class="article-box" @click="clickArticle(article.id)">
+    <text class="article-content">{{article.name}}</text>
+    <div class="article-image-box row space-between" >
+      <image class="article-image" :src="cover.compress" v-for="(cover,index) in article.covers" :key="index"  resize="cover"/>
     </div>
     <div class="article-foot row flex-end">
       <text class="article-username">{{article.username}}</text>
-      <text class="article-dateTime" v-if="article.dateTime">{{article.dateTime}}</text>
-      <text class="article-commentNum">{{article.commentNum}}</text>
+      <text class="article-dateTime" v-if="article.time">{{article.time}}</text>
+      <text class="article-commentNum">{{article.read_num}}</text>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['article'],
+  props: {
+    article: {
+      type: Object
+    },
+    in_share: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {}
+  },
+  methods: {
+    clickArticle (id) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
+    }
   }
 }
 </script>
@@ -39,8 +54,6 @@ export default {
   background-color: #f4f4f4;
 }
 .article-image-box {
-  flex-direction: row;
-  justify-content: space-between;
   margin-top: 20px;
 }
 .article-foot {

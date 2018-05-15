@@ -1,26 +1,39 @@
 <template>
-  <div class="article-box">
-    <div class="row" style="justify-content: space-between;">
-      <div class="article-left">
-        <text class="article-content">{{article.content}}</text>
+  <div class="article-box"  @click="clickArticle(article.id)">
+    <div class="row space-between">
+      <div class="article-left column space-between">
+        <text class="article-content">{{article.name}}</text>
         <div class="article-foot row flex-end">
           <text class="article-username">{{article.username}}</text>
-          <text class="article-dateTime"  v-if="article.dateTime">{{article.dateTime}}</text>
-          <text class="article-commentNum">{{article.commentNum}}</text>
+          <text class="article-dateTime"  v-if="article.time">{{article.time}}</text>
+          <text class="article-commentNum">{{article.read_num}}</text>
         </div>
       </div>
-      <div class="article-image-box row" >
-        <image class="article-image" :src="image" v-for="(image,index) in article.images" :key="index" />
-      </div>
+      <image class="article-image" :src="cover.compress" v-for="(cover,index) in article.covers" :key="index" resize="cover"/>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['article'],
+  props: {
+    article: {
+      type: Object
+    },
+    in_share: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {}
+  },
+  methods: {
+    clickArticle (id) {
+      if (this.in_share) {
+        this.$emit('clickInShare')
+      }
+    }
   }
 }
 </script>
@@ -30,26 +43,20 @@ export default {
 .article-box {
   border-bottom-width: 1px;
   border-bottom-color: #e5e5e5;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   padding-top: 30px;
 }
 .article-content {
   font-size: 34px;
   color: #444444;
+  lines: 2;
+  text-overflow: ellipsis;
 }
 .article-image {
   width: 226px;
   height: 170px;
   background-color: #f4f4f4;
 }
-.article-image-box {
-  flex-direction: row;
-  justify-content: space-between;
-}
-.article-foot {
-  padding-top: 20px;
-}
-
 .article-username {
   color: #999999;
   margin-right: 20px;
@@ -71,7 +78,6 @@ export default {
 .article-left {
   flex:1;
   height: 170px;
-  justify-content:space-between;
-  flex-direction:column;
+  padding-right: 30px;
 }
 </style>

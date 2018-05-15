@@ -32,205 +32,204 @@
 </template>
 
 <script>
-  import Avatar from '../components/Avatar.vue'
-  export default {
-    data () {
-      return {
-        tabs: ['好友', '关注', '粉丝'],
-        selected: 0,
-        tabs_data: [
-          {
-            title: '好友',
-            row_data: [
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '锦鲤大王'
-              },
-              {
-                avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '方片儿尖'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿'
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '小叶',
-                placeholder: './default_avatar.png'
-              }
-            ],
-            refreshing: false,
-            loading: false
-          },
-          {
-            title: '关注',
-            row_data: [
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '锦鲤大王',
-                has_followed: true,
-                be_followed: true
-              },
-              {
-                avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '方片儿尖',
-                has_followed: false,
-                be_followed: false
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿',
-                has_followed: false,
-                be_followed: true
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '小叶',
-                has_followed: true,
-                be_followed: false
-              }
-            ],
-            refreshing: false,
-            loading: false
-          },
-          {
-            title: '粉丝',
-            row_data: [
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '锦鲤大王',
-                has_followed: false,
-                be_followed: true
-              },
-              {
-                avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
-                is_read: false,
-                name: '方片儿尖',
-                has_followed: false,
-                be_followed: false
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '梁鮰鱼儿',
-                has_followed: true,
-                be_followed: false
-              },
-              {
-                avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-                is_read: true,
-                name: '小叶',
-                has_followed: true,
-                be_followed: true
-              }
-            ],
-            refreshing: false,
-            loading: false
-          }
-        ],
-        refreshing_text: '下拉刷新',
-        offsetXRatio: 0
+import Avatar from '../components/Avatar.vue'
+export default {
+  data () {
+    return {
+      tabs: ['好友', '关注', '粉丝'],
+      selected: 0,
+      tabs_data: [
+        {
+          title: '好友',
+          row_data: [
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '锦鲤大王'
+            },
+            {
+              avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '方片儿尖'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿'
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '小叶',
+              placeholder: './default_avatar.png'
+            }
+          ],
+          refreshing: false,
+          loading: false
+        },
+        {
+          title: '关注',
+          row_data: [
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '锦鲤大王',
+              has_followed: true,
+              be_followed: true
+            },
+            {
+              avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '方片儿尖',
+              has_followed: false,
+              be_followed: false
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿',
+              has_followed: false,
+              be_followed: true
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '小叶',
+              has_followed: true,
+              be_followed: false
+            }
+          ],
+          refreshing: false,
+          loading: false
+        },
+        {
+          title: '粉丝',
+          row_data: [
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1041521719,4046775256&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '锦鲤大王',
+              has_followed: false,
+              be_followed: true
+            },
+            {
+              avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1760172527,1473711532&fm=27&gp=0.jpg',
+              is_read: false,
+              name: '方片儿尖',
+              has_followed: false,
+              be_followed: false
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '梁鮰鱼儿',
+              has_followed: true,
+              be_followed: false
+            },
+            {
+              avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+              is_read: true,
+              name: '小叶',
+              has_followed: true,
+              be_followed: true
+            }
+          ],
+          refreshing: false,
+          loading: false
+        }
+      ],
+      refreshing_text: '下拉刷新',
+      offsetXRatio: 0
+    }
+  },
+  components: { Avatar },
+  methods: {
+    onrefresh (tabData, index) {
+      this.tabs_data[index].refreshing = true
+      setTimeout(() => {
+        this.tabs_data[index].refreshing = false
+      }, 2000)
+    },
+    onpullingdown (tabData, index, event) {
+      let distance = Math.abs(event.pullingDistance)
+      if (distance <= 120 && this.refreshing_tex !== '下拉刷新' && !this.tabs_data[index].refreshing) {
+        this.refreshing_text = '下拉刷新'
+      } else if (distance > 120 && this.refreshing_tex !== '松开立即刷新' && !this.tabs_data[index].refreshing) {
+        this.refreshing_text = '松开立即刷新'
+      } else if (this.tabs_data[index].refreshing) {
+        this.refreshing_text = '刷新中...'
+      }
+      console.log('selected', this.selected)
+    },
+    onloading (tabData, index, e) {
+      console.log('event', e)
+      // this.tabs_data[index].loading = true
+      // setTimeout(() => {
+      //   let item = {
+      //     avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
+      //     is_read: true,
+      //     name: '梁鮰鱼儿'
+      //   }
+      //   this.tabs_data[index].row_data.push(item)
+      //   this.tabs_data[index].loading = false
+      // }, 1000)
+    },
+    showWeex () {
+      console.log('weex', weex)
+    },
+    tabClick (idx) {
+      this.selected = idx
+    },
+    tabChange (event) {
+      console.log('tabChange')
+      if (this.selected !== event.index) {
+        this.selected = event.index
       }
     },
-    components: { Avatar },
-    methods: {
-      onrefresh (tabData, index) {
-        this.tabs_data[index].refreshing = true
-        setTimeout(() => {
-          this.tabs_data[index].refreshing = false
-        }, 2000)
-      },
-      onpullingdown (tabData, index, event) {
-        let distance = Math.abs(event.pullingDistance)
-        if (distance <= 120 && this.refreshing_tex !== '下拉刷新' && !this.tabs_data[index].refreshing) {
-          this.refreshing_text = '下拉刷新'
-        } else if (distance > 120 && this.refreshing_tex !== '松开立即刷新' && !this.tabs_data[index].refreshing) {
-          this.refreshing_text = '松开立即刷新'
-        } else if (this.tabs_data[index].refreshing) {
-          this.refreshing_text = '刷新中...'
-        }
-        console.log('selected', this.selected)
-      },
-      onloading (tabData, index, e) {
-        console.log('event', e)
-        // this.tabs_data[index].loading = true
-        // setTimeout(() => {
-        //   let item = {
-        //     avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1033062629,3975475618&fm=27&gp=0.jpg',
-        //     is_read: true,
-        //     name: '梁鮰鱼儿'
-        //   }
-        //   this.tabs_data[index].row_data.push(item)
-        //   this.tabs_data[index].loading = false
-        // }, 1000)
-
-      },
-      showWeex () {
-        console.log('weex', weex)
-      },
-      tabClick (idx) {
-        this.selected = idx
-      },
-      tabChange (event) {
-        console.log('tabChange')
-        if (this.selected !== event.index) {
-          this.selected = event.index
-        }
-      },
-      handleScroll (e) {
-        let num = -e.offsetXRatio
-        // if (num > 0.5 && this.selected < this.tabs.length - 1) {
-        //   this.selected = this.selected + 1
-        // } else if (num < 0.5 && this.selected !== 0) {
-        //   this.selected = this.selected - 1
-        // }
-        this.offsetXRatio = num + this.selected
-      }
+    handleScroll (e) {
+      let num = -e.offsetXRatio
+      // if (num > 0.5 && this.selected < this.tabs.length - 1) {
+      //   this.selected = this.selected + 1
+      // } else if (num < 0.5 && this.selected !== 0) {
+      //   this.selected = this.selected - 1
+      // }
+      this.offsetXRatio = num + this.selected
+    }
+  },
+  computed: {
+    min_left () {
+      return (750 / this.tabs.length - 40) / 2
     },
-    computed: {
-      min_left () {
-        return (750 / this.tabs.length - 40) / 2
-      },
-      max_left () {
-        return (750 / this.tabs.length - 40) / 2 + ((this.tabs.length - 1) * 750 / this.tabs.length)
-      }
+    max_left () {
+      return (750 / this.tabs.length - 40) / 2 + ((this.tabs.length - 1) * 750 / this.tabs.length)
     }
   }
+}
 </script>
 
 <style scoped>
