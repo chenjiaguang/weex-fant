@@ -24,6 +24,7 @@ export default {
       iframe.contentWindow.document.getElementById('activity-name').remove()
       iframe.contentWindow.document.getElementById('meta_content').remove()
       iframe.contentWindow.document.getElementById('page-content').style.backgroundColor = '#ffffff'
+      iframe.contentWindow.document.body.style.fontSize = '12px'
 
       setIframeHeight(iframe)
       setInterval(() => {
@@ -70,7 +71,7 @@ function setIframeHeight (iframe) {
 }
 
 body {
-  font-size: 14px;
+  font-size: 12px;
 }
 #preview {
   box-sizing: border-box;
