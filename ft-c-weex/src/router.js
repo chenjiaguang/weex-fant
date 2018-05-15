@@ -10,6 +10,8 @@ import IdentifyPhone from '@/views/identifyPhone'
 import ApplyToutiao from '@/views/applyToutiao'
 import ApplyToutiaoSelect from '@/views/applyToutiaoSelect'
 import ApplyToutiaoForm from '@/views/applyToutiaoForm'
+import SpecialDetail from '@/views/specialDetail'
+import DynamicArticleDetail from '@/views/dynamicArticleDetail'
 import fetchData from '@/lib/fetchData'
 
 let domain = ''
@@ -17,14 +19,14 @@ switch (process.env.NODE_ENV) {
   case 'prod':
   case 'production':
   case 'release':
-    domain = 'http://fant.fantuanlife.com'
-    break;
+    domain = 'http://fanttest.fantuanlife.com'
+    break
   case 'dev':
   case 'development':
   case 'test':
   case 'testing':
     domain = 'http://fanttest.fantuanlife.com'
-    break;
+    break
   default:
     domain = 'http://fanttest.fantuanlife.com'
 }
@@ -49,6 +51,16 @@ module.exports = new Router({
       path: '/article/detail',
       name: 'ArticleDetail',
       component: ArticleDetail
+    },
+    {
+      path: '/special/detail',
+      name: 'SpecialDetail',
+      component: SpecialDetail
+    },
+    {
+      path: '/dynamicArticle/detail',
+      name: 'DynamicArticleDetail',
+      component: DynamicArticleDetail
     },
     {
       path: '/message',

@@ -1,5 +1,7 @@
 // TODO:正在加载中及没有更多数据的提示
-// TODO:clickInShare事件；logo图片；url读取参数
+// TODO:clickInShare事件；logo图片
+// TODO:上下滑动触发问题
+// TODO:title左右滑动条出现问题
 <template>
   <div>
     <scroller v-if="specialinfo" show-scrollbar="false">
@@ -101,7 +103,7 @@ export default {
       let pn = ++this.specialinfo.elements[i].pn
       stream.fetch({
         method: 'POST',
-        url: 'http://fanttest.fantuanlife.com/jv/anonymous/newsarticle/elementarticles',
+        url: this.$domain + '/jv/anonymous/newsarticle/elementarticles',
         type: 'json',
         headers: {
           'Content-Type': 'application/json'
@@ -125,10 +127,16 @@ export default {
         // 每隔一段时间，才检测一次触发
         let now = Math.round(new Date().getTime() / 1000)
         if (now > this.lastScrollDownTime + 2) {
-          dom.scrollToElement(this.$refs.list0[0], { offset: 0 })
+          console.log('down')
+          let el = this.$refs.list0[0]
+          dom.scrollToElement(el, { offset: 0 })
           this.lastScrollDownTime = now
         }
       } else if (lastContentOffset && lastContentOffset.y < this.scrollDistance && e.contentOffset.y >= this.scrollDistance) {
+        modal.toast({
+          message: 'up',
+          duration: 0.3
+        })
         dom.scrollToElement(this.$refs.detailHeader, { offset: 0 })
       }
       lastContentOffset = e.contentOffset
@@ -144,7 +152,7 @@ export default {
     })
     stream.fetch({
       method: 'POST',
-      url: 'http://fanttest.fantuanlife.com/jv/anonymous/newsspecial/specialinfo',
+      url: this.$domain + '/jv/anonymous/newsspecial/specialinfo',
       type: 'json',
       headers: {
         'Content-Type': 'application/json'

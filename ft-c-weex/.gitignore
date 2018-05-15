@@ -2,6 +2,7 @@
 node_modules/
 /temp/
 .temp/
+release/
 /dist/
 npm-debug.log*
 yarn-debug.log*

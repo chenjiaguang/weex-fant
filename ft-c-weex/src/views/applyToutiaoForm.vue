@@ -146,189 +146,188 @@
 </template>
 
 <script>
-  import Button from '../components/Button.vue'
-  import FtNavigator from '../lib/FtNavigator'
-  import Nat from 'natjs'
-  const modal = weex.requireModule('modal')
-  const picker = weex.requireModule('picker')
-  export default {
-    data () {
-      return {
-        default_avatar: '../static/images/apply_default_avatar.png',
-        default_pic: '../static/images/apply_default_pic.png',
-        area_arr: [],
-        area_label_arr: [],
-        area_selected: null,
-        uncheck_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAABV0lEQVRYR+2YMUoEMRSG/5fAsiIIA+MprBRbC0HwBNO54CDMmCtss9rsFaIDssKWcwJB2MJWtvMUDgwuiMtC8iToYjWkGmaEpEnxw8uf7/0p8gg/i9I0jYfD4bm19grAETPv/WqtbES0ArAUQjys1+un2WxWAWByZrIsOySiKYATZl4AeAPw1YqTv6I7AA6I6BTACzOPi6JYOjL7g8FgzszHUkoF4LmqqlVZlqZNQ0mSyDiOXRfOjDGaiF43m82IlFIX1tp7IcSl1rps00RTbaVUYq19FELklOf5gpk/pZQjrXXdkaHIGDMnol1n6IOZ7+q6HrfdpqbLuvZFUTQlomsXaAZwWxTFTRd0tmdmWebOnwRDTV0IhHz5DIQCIR8Bnx4yFAj5CPj0kKFAyEfAp4cMBUI+Aj49ZOj/EurdR7F3X+neDRt6N47p3cBq+xwdqY5Heu/OyzcyjW2e3DSkkwAAAABJRU5ErkJggg==',
-        checked_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAACvUlEQVRYR82YS2hTQRSGv5NoH75bWktEjULcqDW0WHThohurCIJudKNuFHGpO61gBaFYQS2uqiKIxQddtYiCD1B0pWCgCK3FVyNSrQ+warGv3COTGJrEpLlpbtLM8l7m3m/O/585Z0YIDxVfBxWhYrZYqvsRalV1QeRdboaI/EQJuESuuEe592YX30BUDIz3NjVqaTPQgJpneRwiCtwXlzQGt0tAfB1aOVas7ahuBlx5RIn9lYXIg6JR2Ssru3RPCL2W98gkrlxE3cg+8XZajxStn6HIxP1WkMfi7bKGcm1gu4s1RpflnSFjqoIZeQUqcYOlMGalXn/egOa44cJ64cmgcj0IqXTJC1BVCZyrFTZVCr/H4Vi3xZ2B5FA5BzIwJ6uFBo8w69+W+2scWnosbn6AiQT5cgpkZLq8QdhYMQkTdU/ba+V0j5KYUTkDipUp1sIjIbgVVJpeJk/unAAlk8lAGZj298r5PmV4InmmOQ40lUxX3ylnelPDGERHgaYrU2ysHAPKRibbQP5FsGIedH2curJkK5MtoFXz4WyNC38ZtL6yuPSWpEZ0Qqa0QCYyp9ZFYKLZcaNfae1ThsYnpzsl05RApW5oqxPqq+I7WVMQH35WjgQ0nL5OypQ2QotL4GKd4C8T3Akd9tMvSkuvcnR1pDZlsunZ6XFSZtmSUmhcI2z1CLNjOm1TpX+MKQuL4suBnU0vKyAzubwITqwVdi5LfxCxs+llDRTeOYlU691ewfgrcRhvGcOnqk12INJ6KPEjxsAHfMIhH8yN9hBE+pm7A8rx7vjsyxQiYyAzwbSfO5ZCs98YPSLhs+/K4RfKpz/810ZMFyrj0rHNA03VQv8wHHzuXGSiC8gYyChWWw7BYRgcmW4cUs/LGMh5hPgvFt5BseCO0gV32VBw1zEFd2EV9biJ1Mxe6clXw/IXYG2U2OewuiQAAAAASUVORK5CYII=',
-        err_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAADkklEQVRYR82YTWxUVRTHf+f2c/xA0w0Jq8ZFE2MCC6MTF9ApJS1oIjbTGTCjMXHBChLckBAWwoKQuNEEN3RhYqRROoyVhVYIpS0spBoXkOiChemKyIaoFNoZpveQ+97M0Bk6nfdmXuK87cw95/f+57x7PoSAj6JC/IMXia31IWvbsfYdRHYA/aAv+2bkH2AJ1VsY8yPacZuVjvssnn8giAZxJUH+pHtSL1FkDOxelDd8CEyDs9aDE34D8zOx7u9lZvK/Rv42BVIQhtIj6NoplNeAFxoZrPP7MsIfSMenzE1dEairVl0gHU31kddjqB4FepoEqT2WR+QL8vKZ/JK9v5HNDYF0+MAAtngSSxLojgimbKaAIYexJ2V2+k6t7WeAPJhicRJ43WVpxDBlcy5kv9PZmZHZC1VQVQ69MBXsl1gOBoQpIHxDtznteSrYEygfBlRVMXzHqjm8PnwVIC+BE+NnUP0koEHH/CedXbtl9tt7jkeH399KsTAHvBpQ2QIinzN/8Xg50Z8CDaVHsWuXQiWwcEnmc++td66J5A8o+wMCub/lMR37ZW7qsneTeW/m3TP2Mko8hCF3PCsLF9NVQEPjU1hNhbIjLNJpRuVq9l/xbuBE+iPUng1/z0QEBMuIOcJ89mvReGYLsdUJlAOh3sovFdEo5MfqAiu9h0QTB/vRx7PAK/8rEPyFdA2LDqXexdrpALVpA94IFQKLMWOig8lzwKHw6kQcMh9gQjQxfhPVkF9XGT9ShVweLTqgv1Hd2hYKidwTTSRX0WareeQK5dsRqP1CdjN8yahk3Iws5N6uKh2DyZ+AfU3lpJfULX32rqE3u7meXfIAdqX6EXut1HM3wzTR6sX4GOEKSs6vJCRRRkC7mqApXYwtlQ7PrWulHvkA+lzAxm4j3lLpaKm4NqFDvSOV4tpS+xEZ0NP2wxN6X2YLK6suF5opIXcQ+cqPmH4MDITGdA1arHfEDZKttbDIXayMyY3srx7PztSbGJ0G3RYC6tkWtpyZ4Zt8brCQGyw36KVBYQHVnQGB6jf5HtRbqT56Q4xBwi1i2+Iyczbvh/5IDyt3F1HcEqLRs/kYVD6tw2MDFE3QQXEZwwnUTPn3kE1jcTNaox1AaVC0mdrpNYJRWh4Ct0svtB30+QbShBulK0q58PW0ybKhAtVO65j1srfNwqoKyqkVz9Ss9NzXJDUrPV1CqVnpTT7YbEm13s8TWw7WuPgcchkAAAAASUVORK5CYII=',
-        arrow_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAbCAYAAACa9mScAAAB4ElEQVRIS62VPWjbQBTH319SB8dTaQKFjiXQqR+rAwEJIy9eQkFkDV26pR+BDKFdAh2zuJnTodBCAx1NkO2b4uDUa6Fb2qnQYtV4cEwjvVfO1ME5GkXUuvHevd/97937QKvVusfMOyJyn4gOmHnL9/2vAIQyLjQajUMRKenz2lFE2sz83Pf946wghGH4nYhuTl3KRPTFtu3A87zPWcRoyFMi2iaiouHQA7Bi2/aR67pxGgzdbneu3+8/YeYNANenDwP4RkSbURR9DILg92UgaEO73S4Mh8M1Edk1IDpGPwGsl8vl96mQiVEptZokSU1E5g3YmYg8LhaL70ql0qkJGyuZLBFBs9l8KCKviGjRAJ3qfcdxXruu279gM6lKKYeZl5lZy18w7EPLsmq9Xm8rCIJkYrugZNqhXq/fdRxnn4huE5FlqNodjUYvqtXqr3F+pX1dGIYPAOxoZQBM0NskSV5WKpWTVMjfGC0y8x6AcVafPwE402VSKBQepUImDp1O58ZgMNgHsCQi1wzYm0wQ7aSUuhPHcYOIbhkh+JEJopSaj+P4w38puSomIqJbR3pMZv6dmfLkqowFUIui6PKMzaV2ZqrimftJLp0tlx6bS7f/19yxLOuZ53mfMs+dPCbgH1J6XJGebIY/AAAAAElFTkSuQmCC',
-        person: {
-          avatar: {
-            value: '',
-            error: '请上传头像',
-            require: true
-          },
-          toutiao_name: {
-            value: '这是个很严谨的头条号',
-            error: '请输入1~10字，不含特殊符号的头条号名称',
-            require: true
-          },
-          phone: {
-            value: '',
-            error: '请输入正确的联系电话',
-            require: true
-          },
-          area: {
-            value: '',
-            error: '请选择专注的领域',
-            require: true
-          },
-          intro: {
-            value: '',
-            error: '请输入10~30个字的简介',
-            require: true
-          }
+import Button from '../components/Button.vue'
+import FtNavigator from '../lib/FtNavigator'
+const modal = weex.requireModule('modal')
+const picker = weex.requireModule('picker')
+export default {
+  data () {
+    return {
+      default_avatar: '../static/images/apply_default_avatar.png',
+      default_pic: '../static/images/apply_default_pic.png',
+      area_arr: [],
+      area_label_arr: [],
+      area_selected: null,
+      uncheck_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAABV0lEQVRYR+2YMUoEMRSG/5fAsiIIA+MprBRbC0HwBNO54CDMmCtss9rsFaIDssKWcwJB2MJWtvMUDgwuiMtC8iToYjWkGmaEpEnxw8uf7/0p8gg/i9I0jYfD4bm19grAETPv/WqtbES0ArAUQjys1+un2WxWAWByZrIsOySiKYATZl4AeAPw1YqTv6I7AA6I6BTACzOPi6JYOjL7g8FgzszHUkoF4LmqqlVZlqZNQ0mSyDiOXRfOjDGaiF43m82IlFIX1tp7IcSl1rps00RTbaVUYq19FELklOf5gpk/pZQjrXXdkaHIGDMnol1n6IOZ7+q6HrfdpqbLuvZFUTQlomsXaAZwWxTFTRd0tmdmWebOnwRDTV0IhHz5DIQCIR8Bnx4yFAj5CPj0kKFAyEfAp4cMBUI+Aj49ZOj/EurdR7F3X+neDRt6N47p3cBq+xwdqY5Heu/OyzcyjW2e3DSkkwAAAABJRU5ErkJggg==',
+      checked_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAACvUlEQVRYR82YS2hTQRSGv5NoH75bWktEjULcqDW0WHThohurCIJudKNuFHGpO61gBaFYQS2uqiKIxQddtYiCD1B0pWCgCK3FVyNSrQ+warGv3COTGJrEpLlpbtLM8l7m3m/O/585Z0YIDxVfBxWhYrZYqvsRalV1QeRdboaI/EQJuESuuEe592YX30BUDIz3NjVqaTPQgJpneRwiCtwXlzQGt0tAfB1aOVas7ahuBlx5RIn9lYXIg6JR2Ssru3RPCL2W98gkrlxE3cg+8XZajxStn6HIxP1WkMfi7bKGcm1gu4s1RpflnSFjqoIZeQUqcYOlMGalXn/egOa44cJ64cmgcj0IqXTJC1BVCZyrFTZVCr/H4Vi3xZ2B5FA5BzIwJ6uFBo8w69+W+2scWnosbn6AiQT5cgpkZLq8QdhYMQkTdU/ba+V0j5KYUTkDipUp1sIjIbgVVJpeJk/unAAlk8lAGZj298r5PmV4InmmOQ40lUxX3ylnelPDGERHgaYrU2ysHAPKRibbQP5FsGIedH2curJkK5MtoFXz4WyNC38ZtL6yuPSWpEZ0Qqa0QCYyp9ZFYKLZcaNfae1ThsYnpzsl05RApW5oqxPqq+I7WVMQH35WjgQ0nL5OypQ2QotL4GKd4C8T3Akd9tMvSkuvcnR1pDZlsunZ6XFSZtmSUmhcI2z1CLNjOm1TpX+MKQuL4suBnU0vKyAzubwITqwVdi5LfxCxs+llDRTeOYlU691ewfgrcRhvGcOnqk12INJ6KPEjxsAHfMIhH8yN9hBE+pm7A8rx7vjsyxQiYyAzwbSfO5ZCs98YPSLhs+/K4RfKpz/810ZMFyrj0rHNA03VQv8wHHzuXGSiC8gYyChWWw7BYRgcmW4cUs/LGMh5hPgvFt5BseCO0gV32VBw1zEFd2EV9biJ1Mxe6clXw/IXYG2U2OewuiQAAAAASUVORK5CYII=',
+      err_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAADkklEQVRYR82YTWxUVRTHf+f2c/xA0w0Jq8ZFE2MCC6MTF9ApJS1oIjbTGTCjMXHBChLckBAWwoKQuNEEN3RhYqRROoyVhVYIpS0spBoXkOiChemKyIaoFNoZpveQ+97M0Bk6nfdmXuK87cw95/f+57x7PoSAj6JC/IMXia31IWvbsfYdRHYA/aAv+2bkH2AJ1VsY8yPacZuVjvssnn8giAZxJUH+pHtSL1FkDOxelDd8CEyDs9aDE34D8zOx7u9lZvK/Rv42BVIQhtIj6NoplNeAFxoZrPP7MsIfSMenzE1dEairVl0gHU31kddjqB4FepoEqT2WR+QL8vKZ/JK9v5HNDYF0+MAAtngSSxLojgimbKaAIYexJ2V2+k6t7WeAPJhicRJ43WVpxDBlcy5kv9PZmZHZC1VQVQ69MBXsl1gOBoQpIHxDtznteSrYEygfBlRVMXzHqjm8PnwVIC+BE+NnUP0koEHH/CedXbtl9tt7jkeH399KsTAHvBpQ2QIinzN/8Xg50Z8CDaVHsWuXQiWwcEnmc++td66J5A8o+wMCub/lMR37ZW7qsneTeW/m3TP2Mko8hCF3PCsLF9NVQEPjU1hNhbIjLNJpRuVq9l/xbuBE+iPUng1/z0QEBMuIOcJ89mvReGYLsdUJlAOh3sovFdEo5MfqAiu9h0QTB/vRx7PAK/8rEPyFdA2LDqXexdrpALVpA94IFQKLMWOig8lzwKHw6kQcMh9gQjQxfhPVkF9XGT9ShVweLTqgv1Hd2hYKidwTTSRX0WareeQK5dsRqP1CdjN8yahk3Iws5N6uKh2DyZ+AfU3lpJfULX32rqE3u7meXfIAdqX6EXut1HM3wzTR6sX4GOEKSs6vJCRRRkC7mqApXYwtlQ7PrWulHvkA+lzAxm4j3lLpaKm4NqFDvSOV4tpS+xEZ0NP2wxN6X2YLK6suF5opIXcQ+cqPmH4MDITGdA1arHfEDZKttbDIXayMyY3srx7PztSbGJ0G3RYC6tkWtpyZ4Zt8brCQGyw36KVBYQHVnQGB6jf5HtRbqT56Q4xBwi1i2+Iyczbvh/5IDyt3F1HcEqLRs/kYVD6tw2MDFE3QQXEZwwnUTPn3kE1jcTNaox1AaVC0mdrpNYJRWh4Ct0svtB30+QbShBulK0q58PW0ybKhAtVO65j1srfNwqoKyqkVz9Ss9NzXJDUrPV1CqVnpTT7YbEm13s8TWw7WuPgcchkAAAAASUVORK5CYII=',
+      arrow_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAbCAYAAACa9mScAAAB4ElEQVRIS62VPWjbQBTH319SB8dTaQKFjiXQqR+rAwEJIy9eQkFkDV26pR+BDKFdAh2zuJnTodBCAx1NkO2b4uDUa6Fb2qnQYtV4cEwjvVfO1ME5GkXUuvHevd/97937QKvVusfMOyJyn4gOmHnL9/2vAIQyLjQajUMRKenz2lFE2sz83Pf946wghGH4nYhuTl3KRPTFtu3A87zPWcRoyFMi2iaiouHQA7Bi2/aR67pxGgzdbneu3+8/YeYNANenDwP4RkSbURR9DILg92UgaEO73S4Mh8M1Edk1IDpGPwGsl8vl96mQiVEptZokSU1E5g3YmYg8LhaL70ql0qkJGyuZLBFBs9l8KCKviGjRAJ3qfcdxXruu279gM6lKKYeZl5lZy18w7EPLsmq9Xm8rCIJkYrugZNqhXq/fdRxnn4huE5FlqNodjUYvqtXqr3F+pX1dGIYPAOxoZQBM0NskSV5WKpWTVMjfGC0y8x6AcVafPwE402VSKBQepUImDp1O58ZgMNgHsCQi1wzYm0wQ7aSUuhPHcYOIbhkh+JEJopSaj+P4w38puSomIqJbR3pMZv6dmfLkqowFUIui6PKMzaV2ZqrimftJLp0tlx6bS7f/19yxLOuZ53mfMs+dPCbgH1J6XJGebIY/AAAAAElFTkSuQmCC',
+      person: {
+        avatar: {
+          value: '',
+          error: '请上传头像',
+          require: true
         },
-        manager: {
-          id_card_pic: {
-            value: '',
-            error: '请上传手持身份证正面照',
-            require: true
-          },
-          real_name: {
-            value: '',
-            error: '请输入真实姓名',
-            require: true
-          },
-          id_card_num: {
-            value: '',
-            error: '请输入身份证号',
-            require: true
-          }
+        toutiao_name: {
+          value: '这是个很严谨的头条号',
+          error: '请输入1~10字，不含特殊符号的头条号名称',
+          require: true
         },
-        organization: {
-          organization_name: {
-            value: '',
-            error: '请输入组织名称',
-            require: true
-          },
-          organization_address: {
-            value: '',
-            error: '请输入组织地址',
-            require: true
-          },
-          organization_website: {
-            value: '',
-            error: '',
-            require: false,
-          }
+        phone: {
+          value: '',
+          error: '请输入正确的联系电话',
+          require: true
         },
-        agreement: true
-      }
-    },
-    components: { Button },
-    methods: {
-      navigate (weex, web) {
-        let options = {
-          instance: this,
-          weex_url: weex,
-          web_url: web
+        area: {
+          value: '',
+          error: '请选择专注的领域',
+          require: true
+        },
+        intro: {
+          value: '',
+          error: '请输入10~30个字的简介',
+          require: true
         }
-        FtNavigator.push(options)
       },
-      goForm (type) {
-        console.log('goForm')
-      },
-      viewAppear () {
-        const animation = weex.requireModule('animation')
-        const animation_el = this.$refs['wrapper']
-        animation.transition(animation_el, {
-          styles: {
-            'backgroundColor': '#f5f5f5'
-          },
-          duration: 500, //ms
-          timingFunction: 'ease',
-          delay: 0 //ms
-        })
-      },
-      pickImage () {
-        modal.toast({
-          message: 'pickImage',
-          duration: 0.3
-        })
-        Nat.image.pick({
-          limit: 3,
-          showCamera: true
-        }, (err, ret) => {
-          console.log(ret.paths)
-        })
-      },
-      pickArea () {
-        if (!this.area_arr || this.area_arr.length === 0) {
-          this.initArea(this.pickArea)
-          return false
+      manager: {
+        id_card_pic: {
+          value: '',
+          error: '请上传手持身份证正面照',
+          require: true
+        },
+        real_name: {
+          value: '',
+          error: '请输入真实姓名',
+          require: true
+        },
+        id_card_num: {
+          value: '',
+          error: '请输入身份证号',
+          require: true
         }
-        picker.pick({
-          index: this.area_selected || 0,
-          items: this.area_label_arr,
-          textColor: '#333333',
-          confirmTitle: '确认',
-          cancelTitle: '取消',
-          confirmTitleColor: '#1EB0FD',
-          cancelTitleColor: '#666666',
-          title: '选择专注领域',
-          titleColor: '#333333'
-        }, event => {
-          if (event.result === 'success') {
-            this.area_selected = event.data
-            this.person.area.value = this.area_arr.filter(item => item.label === this.area_label_arr[event.data])[0].value
-          }
-        })
       },
-      initArea (callback) {
-        this.$fetchData(
-          this.$domain + '/news/apply/initform',
-          {},
-          {
-            success: (res) => {
-              if (res && Boolean(res.error) && res.msg) {
-                modal.toast({
-                  message: res.msg,
-                  duration: 2
-                })
-              } else if (res && !Boolean(res.error)) {
-                this.area_arr = res.data.category_list
-                this.area_label_arr = res.data.category_list.map((item) => {
-                  return item.label
-                })
-                callback && callback()
-              }
-            },
-            fail: (res) => {
-              console.log('fail', res)
-            }
-          }
-        )
+      organization: {
+        organization_name: {
+          value: '',
+          error: '请输入组织名称',
+          require: true
+        },
+        organization_address: {
+          value: '',
+          error: '请输入组织地址',
+          require: true
+        },
+        organization_website: {
+          value: '',
+          error: '',
+          require: false
+        }
       },
-      changeAgreement () {
-        this.agreement = !this.agreement
-      },
-      stopPropagation (event) {
-        event.stopPropagation()
-      },
-      goAgreement (event) {
-        // 跳转范团头条用户协议
-        event.stopPropagation()
-      },
-      goNext () {
-        console.log('goNext')
-      }
-    },
-    created () {
-      this.initArea()
+      agreement: true
     }
+  },
+  components: { Button },
+  methods: {
+    navigate (weex, web) {
+      let options = {
+        instance: this,
+        weex_url: weex,
+        web_url: web
+      }
+      FtNavigator.push(options)
+    },
+    goForm (type) {
+      console.log('goForm')
+    },
+    viewAppear () {
+      const animation = weex.requireModule('animation')
+      const animation_el = this.$refs['wrapper']
+      animation.transition(animation_el, {
+        styles: {
+          'backgroundColor': '#f5f5f5'
+        },
+        duration: 500, // ms
+        timingFunction: 'ease',
+        delay: 0 // ms
+      })
+    },
+    pickImage () {
+      modal.toast({
+        message: 'pickImage',
+        duration: 0.3
+      })
+      Nat.image.pick({
+        limit: 3,
+        showCamera: true
+      }, (err, ret) => {
+        console.log(ret.paths)
+      })
+    },
+    pickArea () {
+      if (!this.area_arr || this.area_arr.length === 0) {
+        this.initArea(this.pickArea)
+        return false
+      }
+      picker.pick({
+        index: this.area_selected || 0,
+        items: this.area_label_arr,
+        textColor: '#333333',
+        confirmTitle: '确认',
+        cancelTitle: '取消',
+        confirmTitleColor: '#1EB0FD',
+        cancelTitleColor: '#666666',
+        title: '选择专注领域',
+        titleColor: '#333333'
+      }, event => {
+        if (event.result === 'success') {
+          this.area_selected = event.data
+          this.person.area.value = this.area_arr.filter(item => item.label === this.area_label_arr[event.data])[0].value
+        }
+      })
+    },
+    initArea (callback) {
+      this.$fetchData(
+        this.$domain + '/news/apply/initform',
+        {},
+        {
+          success: (res) => {
+            if (res && Boolean(res.error) && res.msg) {
+              modal.toast({
+                message: res.msg,
+                duration: 2
+              })
+            } else if (res && !res.error) {
+              this.area_arr = res.data.category_list
+              this.area_label_arr = res.data.category_list.map((item) => {
+                return item.label
+              })
+              callback && callback()
+            }
+          },
+          fail: (res) => {
+            console.log('fail', res)
+          }
+        }
+      )
+    },
+    changeAgreement () {
+      this.agreement = !this.agreement
+    },
+    stopPropagation (event) {
+      event.stopPropagation()
+    },
+    goAgreement (event) {
+      // 跳转范团头条用户协议
+      event.stopPropagation()
+    },
+    goNext () {
+      console.log('goNext')
+    }
+  },
+  created () {
+    this.initArea()
   }
+}
 </script>
 
 <style scoped>

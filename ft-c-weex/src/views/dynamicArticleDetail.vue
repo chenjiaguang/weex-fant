@@ -1,12 +1,13 @@
-// TODO:clickInShare事件；logo图片；url读取参数
+// TODO:clickInShare事件；logo图片；
+// TODO:幻灯片模式时背景可滚动问题
 <template>
-  <div class="wrapper">
-    <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" v-if="dynamic">
+  <div v-if="dynamic">
+    <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" >
       <detailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
       <dynamicArticleContent :dynamic="dynamic"  style="margin-bottom:60px"></dynamicArticleContent>
       <comments  style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
-      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </scroller>
+    <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
   </div>
 </template>
 
@@ -32,12 +33,12 @@ export default {
   created () {
     stream.fetch({
       method: 'POST',
-      url: 'http://fanttest.fantuanlife.com/jv/anonymous/qz/dynamicarticle',
+      url: this.$domain + '/jv/anonymous/qz/dynamicarticle',
       type: 'json',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'id': '506'})
+      body: JSON.stringify({'id': this.$route.query.id})
     },
     res => {
       console.log(res)
