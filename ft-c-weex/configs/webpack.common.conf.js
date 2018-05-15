@@ -13,6 +13,10 @@ const weexEntry = {
   'articleDetail': helper.root('entrys/articleDetail.js'),
   'friend': helper.root('entrys/friend.js'),
   'bindPhone': helper.root('entrys/bindPhone.js'),
+  'identifyPhone': helper.root('entrys/identifyPhone.js'),
+  'applyToutiao': helper.root('entrys/applyToutiao.js'),
+  'applyToutiaoSelect': helper.root('entrys/applyToutiaoSelect.js'),
+  'applyToutiaoForm': helper.root('entrys/applyToutiaoForm.js'),
 }
 
 const getEntryFileContent = (source, routerpath) => {

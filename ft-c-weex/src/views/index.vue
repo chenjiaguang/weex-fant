@@ -4,7 +4,11 @@
     <text @click="navigate('home', '/home')">Home</text>
     <text @click="navigate('articleDetail', '/article/detail')">ArticleDetail</text>
     <text @click="navigate('friend', '/friend')">friend</text>
-    <text @click="navigate('test', '/test')">test</text>
+    <text @click="navigate('bindPhone', '/phone/bind')">bindPhone</text>
+    <text @click="navigate('identifyPhone', '/phone/identify')">identifyPhone</text>
+    <text @click="navigate('applyToutiao', '/toutiao/apply')">applyToutiao</text>
+    <text @click="navigate('applyToutiaoSelect', '/toutiao/select')">applyToutiaoSelect</text>
+    <text @click="navigate('applyToutiaoForm', '/toutiao/form')">applyToutiaoForm</text>
   </div>
 </template>
 

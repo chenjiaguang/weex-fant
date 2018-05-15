@@ -27,6 +27,9 @@
     justify-content: center;
     align-items: center;
   }
+  .button-text{
+    font-size:34px;
+  }
   .default-btn{
     border-width:2px;
     border-color:#1EB0FD;

@@ -5,8 +5,32 @@ import Home from '@/views/home'
 import ArticleDetail from '@/views/articleDetail'
 import Message from '@/views/message'
 import Friend from '@/views/friend'
-import bindPhone from '@/views/bindPhone'
+import BindPhone from '@/views/bindPhone'
+import IdentifyPhone from '@/views/identifyPhone'
+import ApplyToutiao from '@/views/applyToutiao'
+import ApplyToutiaoSelect from '@/views/applyToutiaoSelect'
+import ApplyToutiaoForm from '@/views/applyToutiaoForm'
+import fetchData from '@/lib/fetchData'
 
+let domain = ''
+switch (process.env.NODE_ENV) {
+  case 'prod':
+  case 'production':
+  case 'release':
+    domain = 'http://fant.fantuanlife.com'
+    break;
+  case 'dev':
+  case 'development':
+  case 'test':
+  case 'testing':
+    domain = 'http://fanttest.fantuanlife.com'
+    break;
+  default:
+    domain = 'http://fanttest.fantuanlife.com'
+}
+console.log('domain', domain)
+Vue.prototype.$domain = domain
+Vue.prototype.$fetchData = fetchData
 Vue.use(Router)
 
 module.exports = new Router({
@@ -39,7 +63,27 @@ module.exports = new Router({
     {
       path: '/phone/bind',
       name: 'BindPhone',
-      component: bindPhone
+      component: BindPhone
+    },
+    {
+      path: '/phone/identify',
+      name: 'IdentifyPhone',
+      component: IdentifyPhone
+    },
+    {
+      path: '/toutiao/apply',
+      name: 'ApplyToutiao',
+      component: ApplyToutiao
+    },
+    {
+      path: '/toutiao/select',
+      name: 'ApplyToutiaoSelect',
+      component: ApplyToutiaoSelect
+    },
+    {
+      path: '/toutiao/form',
+      name: 'ApplyToutiaoForm',
+      component: ApplyToutiaoForm
     }
   ]
 })
