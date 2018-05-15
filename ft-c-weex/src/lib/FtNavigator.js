@@ -9,7 +9,7 @@ module.exports = {
       navigator.push({
         url: utils.setNavigatorUrl(options.weex_url),
         params: options.params,
-        animated: 'true'
+        animated: options.animated || 'true'
       }, event => {
         options.callback && options.callback(event)
       })
@@ -21,7 +21,7 @@ module.exports = {
     } else {
       navigator.pop({
         params: options.params,
-        animated: 'true'
+        animated: options.animated || 'true'
       }, event => {
         options.callback && options.callback(event)
       })

@@ -2,7 +2,6 @@
 
 /* weex initialized here, please do not move this line */
 const router = require('../router')
-const Index = require('@/index.vue')
+const Index = require('@/views/index.vue')
 /* eslint-disable no-new */
 new Vue(Vue.util.extend({el: '#root', router}, Index))
-router.push('/')

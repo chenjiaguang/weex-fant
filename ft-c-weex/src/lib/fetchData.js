@@ -23,5 +23,6 @@ module.exports = (url, formData = {}, callback = {}) => {
     }
   }, function (res) {
     // 请求状态处理（如果需要的话）
+    if (callback.after instanceof Function) callback.after()
   })
 };

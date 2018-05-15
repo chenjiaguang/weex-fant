@@ -5,4 +5,3 @@ const router = require('../router')
 const applyToutiaoSelect = require('@/views/applyToutiaoSelect.vue')
 /* eslint-disable no-new */
 new Vue(Vue.util.extend({el: '#root', router}, applyToutiaoSelect))
-router.push('/toutiao/select')

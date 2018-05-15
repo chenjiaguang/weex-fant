@@ -10,6 +10,7 @@ import IdentifyPhone from '@/views/identifyPhone'
 import ApplyToutiao from '@/views/applyToutiao'
 import ApplyToutiaoSelect from '@/views/applyToutiaoSelect'
 import ApplyToutiaoForm from '@/views/applyToutiaoForm'
+import ApplyToutiaoSuccess from '@/views/applyToutiaoSuccess'
 import fetchData from '@/lib/fetchData'
 
 let domain = ''
@@ -84,6 +85,11 @@ module.exports = new Router({
       path: '/toutiao/form',
       name: 'ApplyToutiaoForm',
       component: ApplyToutiaoForm
+    },
+    {
+      path: '/toutiao/success',
+      name: 'ApplyToutiaoSuccess',
+      component: ApplyToutiaoSuccess
     }
   ]
 })

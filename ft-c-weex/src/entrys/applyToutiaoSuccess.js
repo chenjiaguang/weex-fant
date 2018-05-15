@@ -2,6 +2,6 @@
 
 /* weex initialized here, please do not move this line */
 const router = require('../router')
-const Home = require('@/views/home.vue')
+const applyToutiaoSuccess = require('@/views/applyToutiaoSuccess.vue')
 /* eslint-disable no-new */
-new Vue(Vue.util.extend({el: '#root', router}, Home))
+new Vue(Vue.util.extend({el: '#root', router}, applyToutiaoSuccess))
