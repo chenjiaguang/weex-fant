@@ -16,6 +16,7 @@
     <text @click="navigate('applyToutiaoSelect', '/toutiao/select?as=123')">applyToutiaoSelect</text>
     <text @click="navigate('applyToutiaoForm', '/toutiao/form')">applyToutiaoForm</text>
     <text @click="navigate('applyToutiaoSuccess', '/toutiao/success')">applyToutiaoSuccess</text>
+    <text @click="navigate('SetNewPassword', '/set/new/password')">SetNewPassword</text>
   </div>
 </template>
 

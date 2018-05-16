@@ -13,6 +13,7 @@ import ApplyToutiaoForm from '@/views/applyToutiaoForm'
 import ApplyToutiaoSuccess from '@/views/applyToutiaoSuccess'
 import SpecialDetail from '@/views/specialDetail'
 import DynamicArticleDetail from '@/views/dynamicArticleDetail'
+import SetNewPassword from '@/views/setNewPassword'
 import fetchData from '@/lib/fetchData'
 
 let domain = ''
@@ -102,6 +103,11 @@ module.exports = new Router({
       path: '/toutiao/success',
       name: 'ApplyToutiaoSuccess',
       component: ApplyToutiaoSuccess
+    },
+    {
+      path: '/set/new/password',
+      name: 'SetNewPassword',
+      component: SetNewPassword
     }
   ]
 })
