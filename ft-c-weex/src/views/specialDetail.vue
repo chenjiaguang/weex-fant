@@ -1,7 +1,6 @@
 // TODO:正在加载中及没有更多数据的提示
-// TODO:clickInShare事件；logo图片
-// TODO:重要:上下滑动触发问题(解决办法，scroller需要设置高度)
-// TODO:重要:暂时放弃修改:title左右滑动条出现问题
+// TODO:clickInShare事件；
+// TODO:暂时放弃修改:title左右滑动条出现问题
 <template>
   <div>
     <scroller ref="scroller" :style="{height:clientHeight+'px'}" v-if="specialinfo" show-scrollbar="false">

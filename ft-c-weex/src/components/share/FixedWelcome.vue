@@ -2,7 +2,7 @@
   <div class="box">
     <div class="row space-between center">
       <div class="left row">
-        <image class="logo" />
+        <image class="logo" src="../../../static/images/logo.png" />
         <div class="text-box column space-between">
           <text class="title">范团</text>
           <text class="desc">一手掌握海南新鲜事</text>
@@ -55,6 +55,9 @@ export default {
   font-size: 32px;
   line-height: 60px;
   text-align: center;
+}
+.text-box{
+  margin-left: 20px
 }
 .title{
   color: #FFFFFF;

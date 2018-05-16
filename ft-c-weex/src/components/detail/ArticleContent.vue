@@ -19,7 +19,7 @@ export default {
       document.getElementById('article-frame').remove()
       let iframe = document.getElementById('article-frame-weixin')
       iframe.contentDocument.body.innerHTML = data
-      iframe.contentDocument.body.style.zoom = '180%'
+      // iframe.contentDocument.body.style.zoom = '180%'
       // 删除多余元素，修改样式
       iframe.contentWindow.document.getElementById('activity-name').remove()
       iframe.contentWindow.document.getElementById('meta_content').remove()
