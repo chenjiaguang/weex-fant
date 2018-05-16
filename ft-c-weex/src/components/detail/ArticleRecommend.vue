@@ -57,6 +57,8 @@ export default {
   color: #333333;
   font-size: 32px;
   flex: 1;
+  lines: 2;
+  text-overflow: ellipsis;
 }
 .border{
   border-bottom-width: 1px;
