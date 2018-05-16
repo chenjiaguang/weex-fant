@@ -12,7 +12,6 @@
     },
     methods: {
       onClick (e) {
-        console.log(111)
         if (!this.disabled.value && this.clickHandler) {
           this.clickHandler(e)
         }

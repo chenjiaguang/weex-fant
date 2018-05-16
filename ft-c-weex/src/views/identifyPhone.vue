@@ -61,14 +61,6 @@
           message: '请联系客服处理\n客服电话：40011111'
         })
       },
-      navigate (weex, web) {
-        let options = {
-          instance: this,
-          weex_url: weex,
-          web_url: web
-        }
-        FtNavigator.push(options)
-      },
       getCode () {
         let sData = {
           phone: this.phone.value
@@ -148,6 +140,7 @@
                 })
               } else if (res && !Boolean(res.error)) {
                 // 下一步，进入修改页面
+                this.$FtNavigator.push({weex_url: 'bindPhone', web_url: '/phone/bind'})
               }
             },
             fail: (res) => {

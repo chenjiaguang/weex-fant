@@ -247,17 +247,6 @@
       }
     },
     methods: {
-      navigate (weex, web) {
-        let options = {
-          instance: this,
-          weex_url: weex,
-          web_url: web
-        }
-        FtNavigator.push(options)
-      },
-      goForm (type) {
-        console.log('goForm')
-      },
       viewAppear () {
         const animation = weex.requireModule('animation')
         const animation_el = this.$refs['wrapper']
@@ -386,7 +375,7 @@
                   message: '申请成功提交',
                   duration: 1
                 })
-                // 跳转提交成功页面
+                this.$FtNavigator.push({weex_url: 'applyToutiaoSuccess', web_rul: '/toutiao/success'})
               }
             },
             fail: (res) => {

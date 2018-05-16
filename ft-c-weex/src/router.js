@@ -14,6 +14,7 @@ import ApplyToutiaoSuccess from '@/views/applyToutiaoSuccess'
 import SpecialDetail from '@/views/specialDetail'
 import DynamicArticleDetail from '@/views/dynamicArticleDetail'
 import fetchData from '@/lib/fetchData'
+import FtNavigator from '@/lib/FtNavigator'
 
 let domain = ''
 switch (process.env.NODE_ENV) {
@@ -31,12 +32,9 @@ switch (process.env.NODE_ENV) {
   default:
     domain = 'http://fanttest.fantuanlife.com'
 }
-console.log('domain', domain)
-Vue.prototype.$domain = domain
-Vue.prototype.$fetchData = fetchData
 Vue.use(Router)
 
-module.exports = new Router({
+const _router = new Router({
   routes: [
     {
       path: '/',
@@ -105,3 +103,13 @@ module.exports = new Router({
     }
   ]
 })
+
+Vue.prototype.$domain = domain
+Vue.prototype.$fetchData = fetchData
+Vue.prototype.$FtNavigator = {
+  push: (options) => FtNavigator.push(_router, options),
+  pop: (options) => FtNavigator.pop(_router, options),
+  replace: (options) => FtNavigator.replace(_router, options)
+}
+
+module.exports = _router
