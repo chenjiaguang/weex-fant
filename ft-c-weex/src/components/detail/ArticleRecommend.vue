@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import FtNavigator from '../../lib/FtNavigator'
 export default {
   props: {
     recommends: {
@@ -30,9 +31,8 @@ export default {
   },
   methods: {
     clickArticle (id) {
-      if (this.in_share) {
-        this.$emit('clickInShare')
-      }
+      let _this = this
+      FtNavigator.navigate(_this, 'articleDetail', '/article/' + id)
     }
   }
 }

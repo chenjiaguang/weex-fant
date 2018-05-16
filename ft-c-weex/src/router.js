@@ -49,7 +49,7 @@ module.exports = new Router({
       component: Home
     },
     {
-      path: '/article/detail',
+      path: '/article/:id',
       name: 'ArticleDetail',
       component: ArticleDetail
     },
@@ -59,7 +59,7 @@ module.exports = new Router({
       component: SpecialDetail
     },
     {
-      path: '/dynamicArticle/detail',
+      path: '/dynamicArticle/:id',
       name: 'DynamicArticleDetail',
       component: DynamicArticleDetail
     },

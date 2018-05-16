@@ -1,6 +1,15 @@
 import utils from './utils'
 let navigator = weex.requireModule('navigator')
 module.exports = {
+  navigate (vue, weex, web) {
+    let options = {
+      instance: vue,
+      weex_url: weex,
+      web_url: web
+    }
+    console.log('options', options, vue.$router.push)
+    this.push(options)
+  },
   push: (options) => { // instance: 页面的this指向, weex_url: 页面的weex路径, web_url: 页面的web路径, params: 传递的参数, callback: 回调函数
     if (weex.config.env.platform.toLowerCase() === 'web') {
       // console.log(options.instance, options.web_url)

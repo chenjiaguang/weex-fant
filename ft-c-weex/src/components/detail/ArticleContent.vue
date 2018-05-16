@@ -35,7 +35,7 @@ export default {
       document.getElementById('article-frame-weixin').remove()
       let iframe = document.getElementById('article-frame')
       iframe.innerHTML = data
-      iframe.style.zoom = '180%'
+      // iframe.style.zoom = '180%'
     }
   }
 }
