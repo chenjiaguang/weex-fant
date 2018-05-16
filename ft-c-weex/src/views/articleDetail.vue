@@ -1,10 +1,9 @@
-// TODO:重要:微信跨域问题
 // TODO:图集图片尺寸适应
 // 图集7486 文章13887 微信14356
 <template>
   <div>
     <div v-if="article&&article.content_type==0">
-      <scroller style="padding-left: 30px;padding-right: 30px;">
+      <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;">
         <detailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
         <articleContent ref="articleContent" :article="article"  style="margin-bottom:100px"></articleContent>
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
@@ -114,14 +113,19 @@ export default {
         // 如果是微信则读url
         let isWeixin = this.article.news_type === '2'
         if (isWeixin) {
-          let weixinUrl = this.article.article_url
+          let weixinUrl = encodeURIComponent(this.article.article_url)
           stream.fetch({
             method: 'GET',
-            url: weixinUrl
+            url: this.$domain + '/jv/anonymous/call/get?url=' + weixinUrl,
+            type: 'json'
           },
           res => {
-            res.data = res.data.replace(/data-src/g, 'src')
-            this.$refs.articleContent.setContentFromWeixin(res.data)
+            let text = res.data.data.result
+            // let rex = /<body id[^>]*>([\s\S]{100,})<\/body>/
+            // text = rex.exec(text)[0]
+            text = text.replace(/data-src/g, 'src')
+            text = text.replace(/\\n/, '')
+            this.$refs.articleContent.setContentFromWeixin(text)
           })
         } else {
           this.$nextTick(() => {

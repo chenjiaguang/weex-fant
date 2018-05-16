@@ -1,4 +1,4 @@
-// TODO:clickInShare事件；logo图片；
+// TODO:clickInShare事件；
 // TODO:幻灯片模式时背景可滚动问题
 <template>
   <div v-if="dynamic">
