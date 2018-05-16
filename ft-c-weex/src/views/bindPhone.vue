@@ -126,7 +126,7 @@ export default {
                 duration: 2
               })
             } else if (res && !res.error) {
-              // 进入登陆后页面
+              // 绑定成功，跳转原生页面
             }
           },
           fail: (res) => {

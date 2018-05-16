@@ -42,14 +42,6 @@
     },
     components: { Button },
     methods: {
-      navigate (weex, web) {
-        let options = {
-          instance: this,
-          weex_url: weex,
-          web_url: web
-        }
-        FtNavigator.push(options)
-      },
       bannerLoaded (e) {
         if (e.success) {
           this.show_page = true
@@ -67,6 +59,7 @@
       },
       goSelect () {
         console.log('goSelect')
+        this.$FtNavigator.push({weex_url: 'applyToutiaoSelect', web_url: '/toutiao/select'})
       }
     }
   }
