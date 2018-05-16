@@ -1,6 +1,6 @@
-// TODO:微信跨域问题
+// TODO:重要:微信跨域问题
 // TODO:无标签的文字，显得特别大
-// TODO:图集 拉到最后一张时出现图片遮挡下方文字
+// TODO:图集图片尺寸适应
 // 图集7486 文章13887 微信14356
 <template>
   <div>
@@ -161,6 +161,7 @@ export default {
   padding-top: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   padding-bottom:158px;
+  z-index: 1;
 }
 .bottom-text{
   color: #ffffff;

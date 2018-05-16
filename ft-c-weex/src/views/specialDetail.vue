@@ -1,10 +1,10 @@
 // TODO:正在加载中及没有更多数据的提示
 // TODO:clickInShare事件；logo图片
-// TODO:上下滑动触发问题
-// TODO:title左右滑动条出现问题
+// TODO:重要:上下滑动触发问题(解决办法，scroller需要设置高度)
+// TODO:重要:title左右滑动条出现问题
 <template>
   <div>
-    <scroller v-if="specialinfo" show-scrollbar="false">
+    <scroller ref="scroller" :style="{height:headerHeight+clientHeight+'px'}" v-if="specialinfo" show-scrollbar="false">
       <div ref="detailHeader" style="padding-left: 30px;padding-right: 30px;">
         <detailHeader :special="specialinfo.special" style="margin-bottom:80px"></detailHeader>
       </div>
@@ -67,6 +67,7 @@ export default {
       specialinfo: null,
       selected: 0,
       articlesList: [],
+      headerHeight: 2000,
       clientHeight: 2000,
       listHeight: 2000,
       scrollDistance: 80,
@@ -127,7 +128,10 @@ export default {
         // 每隔一段时间，才检测一次触发
         let now = Math.round(new Date().getTime() / 1000)
         if (now > this.lastScrollDownTime + 2) {
-          console.log('down')
+          modal.toast({
+            message: 'down',
+            duration: 0.3
+          })
           let el = this.$refs.list0[0]
           dom.scrollToElement(el, { offset: 0 })
           this.lastScrollDownTime = now
@@ -164,6 +168,14 @@ export default {
         this.articlesList.push([])
       }
       this.loadArticlesFirst(0)
+      this.$nextTick(() => {
+        dom.getComponentRect(this.$refs.detailHeader, (e) => {
+          console.log(e)
+          if (e.result === true || e.result === 1) {
+            this.headerHeight = e.size.height
+          }
+        })
+      })
     })
   }
 }
