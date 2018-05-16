@@ -19,7 +19,7 @@
       <slider auto-play="false"
               v-if="show"
               :index="index"
-              :style="{height:height + 'px'}"
+              :style="{height:height + 'px',zIndex:0}"
               @change="change">
         <div v-for="(v,i) in imageList"
             :key="i" style="flex-direction:row;align-items: center;">

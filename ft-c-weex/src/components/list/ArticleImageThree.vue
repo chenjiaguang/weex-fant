@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import FtNavigator from '../../lib/FtNavigator'
 export default {
   props: {
     article: {
@@ -28,9 +29,7 @@ export default {
   },
   methods: {
     clickArticle (id) {
-      if (this.in_share) {
-        this.$emit('clickInShare')
-      }
+      FtNavigator.navigate(this, 'articleDetail', '/article/' + id)
     }
   }
 }
