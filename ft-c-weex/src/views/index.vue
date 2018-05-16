@@ -14,6 +14,8 @@
     <text @click="$FtNavigator.push({weex_url: 'applyToutiaoSelect', web_url: '/toutiao/select'})">applyToutiaoSelect</text>
     <text @click="$FtNavigator.push({weex_url: 'applyToutiaoForm', web_url: '/toutiao/form'})">applyToutiaoForm</text>
     <text @click="$FtNavigator.push({weex_url: 'applyToutiaoSuccess', web_url: '/toutiao/success'})">applyToutiaoSuccess</text>
+    <text @click="$FtNavigator.push({weex_url: 'setNewPassword', web_url: '/set/new/password'})">设置新密码</text>
+    <text @click="$FtNavigator.push({weex_url: 'editPassword', web_url: '/edit/password'})">修改密码</text>
   </div>
 </template>
 
