@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="" class="article-content toutiaohao" id="article-frame"></div>
-    <iframe style="margin-left:-30px;margin-right:-30px;" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
+    <iframe style="margin-left:-30px;margin-right:-30px;width:750px" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
   </div>
 </template>
 
