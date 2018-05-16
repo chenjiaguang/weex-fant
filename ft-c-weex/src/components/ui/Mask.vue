@@ -79,7 +79,7 @@ export default {
     },
     top: {
       type: Number,
-      default: 0
+      default: 1
     },
     show: {
       type: Boolean,
@@ -148,11 +148,12 @@ export default {
       const isWeb = typeof (window) === 'object' && platform.toLowerCase() === 'web'
       const navHeight = isWeb ? 0 : 130
       const pageHeight = _deviceHeight / deviceWidth * 750 - navHeight
+      let _top = Math.round((top || (pageHeight - height) / 2))
       return {
         width: width + 'px',
         height: newHeight + 'px',
         left: (750 - width) / 2 + 'px',
-        top: (top || (pageHeight - height) / 2) + 'px',
+        top: _top + 'px',
         opacity: hasAnimation && !opened ? 0 : 1
       }
     },
