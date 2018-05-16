@@ -12,13 +12,13 @@
             </div>
           </div>
           <text style="font-size:24px;line-height:34px;color:#999999;">选择文件要求清晰、健康、代表品牌形象</text>
-          <image v-if="avatar.src" :src="avatar.src" style="width:120px;height:120px;position:absolute;bottom:40px;right:0;border-radius:60px;"></image>
+          <image v-if="input_data.avatar.src" :src="input_data.avatar.src" style="width:120px;height:120px;position:absolute;bottom:40px;right:0;border-radius:60px;"></image>
           <image v-else :src="default_avatar" style="width:120px;height:120px;position:absolute;bottom:40px;right:0;"></image>
         </div>
         <div :class="[validate && formErr.toutiao_name.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">头条号名称</text>
           <div class="item-value-tip">
-            <input :class="['item-value', toutiao_name ? '' : 'empty-input']" placeholder="请输入1-10个字" v-model="toutiao_name" />
+            <input :class="['item-value', input_data.toutiao_name ? '' : 'empty-input']" placeholder="请输入1-10个字" v-model="input_data.toutiao_name" />
             <div class="err-tip" v-if="validate && formErr.toutiao_name.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.toutiao_name.err_text}}</text>
@@ -28,7 +28,7 @@
         <div :class="[validate && formErr.phone.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">联系电话</text>
           <div class="item-value-tip">
-            <input type="tel" :class="['item-value', phone ? '' : 'empty-input']" placeholder="请输入正确的联系电话" v-model="phone" />
+            <input type="tel" :class="['item-value', input_data.phone ? '' : 'empty-input']" placeholder="请输入正确的联系电话" v-model="input_data.phone" />
             <div class="err-tip" v-if="validate && formErr.phone.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.phone.err_text}}</text>
@@ -38,7 +38,7 @@
         <div :class="[validate && formErr.area.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">专注领域</text>
           <div class="item-value-tip" @click="pickArea">
-            <div style="flex:1;"><text :class="['item-value', area_label_arr[area_selected] ? '' : 'empty-input']">{{area_label_arr[area_selected] || '请选择专注领域'}}</text></div>
+            <div style="flex:1;"><text :class="['item-value', input_data.area_label_arr[input_data.area_selected] ? '' : 'empty-input']">{{input_data.area_label_arr[input_data.area_selected] || '请选择专注领域'}}</text></div>
             <div class="err-tip" v-if="validate && formErr.area.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.area.err_text}}</text>
@@ -54,7 +54,7 @@
               <text class="err-title" style="width:269px;">{{formErr.intro.err_text}}</text>
             </div>
           </div>
-          <textarea v-model="intro" :class="[validate && formErr.intro.err ? 'err-textarea' : 'correct-textarea', intro ? '' : 'empty-input']" rows="3" placeholder="10~30字，简单介绍你的头条号。要求内容完整通顺，无特殊符号"></textarea>
+          <textarea v-model="input_data.intro" :class="[validate && formErr.intro.err ? 'err-textarea' : 'correct-textarea', input_data.intro ? '' : 'empty-input']" rows="3" placeholder="10~30字，简单介绍你的头条号。要求内容完整通顺，无特殊符号"></textarea>
         </div>
       </div>
       <div class="section-separator"></div>
@@ -70,13 +70,13 @@
           </div>
           <text style="font-size:24px;line-height:34px;color:#999999;">照片要求要有持证人的半身像，</text>
           <text style="font-size:24px;line-height:34px;color:#999999;">身份证信息可明显识别</text>
-          <image v-if="id_card_pic.src" :src="id_card_pic.src" style="width:120px;height:120px;position:absolute;bottom:40px;right:0;"></image>
+          <image v-if="input_data.id_card_pic.src" :src="input_data.id_card_pic.src" style="width:120px;height:120px;position:absolute;bottom:40px;right:0;"></image>
           <image v-else :src="default_pic" style="width:120px;height:78px;position:absolute;bottom:40px;right:0;"></image>
         </div>
         <div :class="[validate && formErr.real_name.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">真实姓名</text>
           <div class="item-value-tip">
-            <input :class="['item-value', real_name ? '' : 'empty-input']" placeholder="请输入真实姓名" v-model="real_name" />
+            <input :class="['item-value', input_data.real_name ? '' : 'empty-input']" placeholder="请输入真实姓名" v-model="input_data.real_name" />
             <div class="err-tip" v-if="validate && formErr.real_name.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.real_name.err_text}}</text>
@@ -86,7 +86,7 @@
         <div :class="[validate && formErr.id_card_num.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">身份证号</text>
           <div class="item-value-tip">
-            <input :class="['item-value', id_card_num ? '' : 'empty-input']" placeholder="请输入真实身份证号" v-model="id_card_num" />
+            <input :class="['item-value', input_data.id_card_num ? '' : 'empty-input']" placeholder="请输入真实身份证号" v-model="input_data.id_card_num" />
             <div class="err-tip" v-if="validate && formErr.id_card_num.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.id_card_num.err_text}}</text>
@@ -101,7 +101,7 @@
         <div :class="[validate && formErr.organization_name.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">组织名称</text>
           <div class="item-value-tip">
-            <input :class="['item-value', organization_name ? '' : 'empty-input']" placeholder="请输入组织名称" v-model="organization_name" />
+            <input :class="['item-value', input_data.organization_name ? '' : 'empty-input']" placeholder="请输入组织名称" v-model="input_data.organization_name" />
             <div class="err-tip" v-if="validate && formErr.organization_name.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.organization_name.err_text}}</text>
@@ -111,7 +111,7 @@
         <div :class="[validate && formErr.organization_address.err ? 'err-item' : 'correct-item', 'form-item']">
           <text class="item-title">组织地址</text>
           <div class="item-value-tip">
-            <input :class="['item-value', organization_address ? '' : 'empty-input']" placeholder="请输入正确的地址" v-model="organization_address" />
+            <input :class="['item-value', input_data.organization_address ? '' : 'empty-input']" placeholder="请输入正确的地址" v-model="input_data.organization_address" />
             <div class="err-tip" v-if="validate && formErr.organization_address.err">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{formErr.organization_address.err_text}}</text>
@@ -121,7 +121,7 @@
         <div :class="['form-item']">
           <text class="item-title">官网地址</text>
           <div class="item-value-tip">
-            <input :class="['item-value', organization_website ? '' : 'empty-input']" placeholder="请输入正确的官网地址" v-model="organization_website" />
+            <input :class="['item-value', input_data.organization_website ? '' : 'empty-input']" placeholder="请输入正确的官网地址" v-model="input_data.organization_website" />
             <div class="err-tip" v-if="false">
               <image class="err-icon" :src="err_icon"></image>
               <text class="err-title" style="width:269px;">{{''}}</text>
@@ -184,7 +184,29 @@
         organization_website: '',
         agreement: true,
         validate: false,
-        stop_apply: false
+        stop_apply: false,
+        input_data: {
+          area_arr: [],
+          area_label_arr: [],
+          area_selected: null,
+          avatar: {
+            value: '',
+            src: ''
+          },
+          toutiao_name: '',
+          phone: '',
+          area: '',
+          intro: '',
+          id_card_pic: {
+            value: '',
+            src: ''
+          },
+          real_name: '',
+          id_card_num: '',
+          organization_name: '',
+          organization_address: '',
+          organization_website: ''
+        }
       }
     },
     components: { Button },
@@ -192,43 +214,43 @@
       formErr () {
         let obj = {
           avatar: {
-            err: !this.avatar.value,
+            err: !this.input_data.avatar.value,
             err_text: '请上传头像'
           },
           toutiao_name: {
-            err: !this.toutiao_name || this.toutiao_name.length > 10,
+            err: !this.input_data.toutiao_name || this.input_data.toutiao_name.length > 10,
             err_text: '请输入1~10字，不含特殊符号的头条号名称'
           },
           phone: {
-            err: !(/^1[34578][0-9]\d{8}$/.test(this.phone)),
+            err: !(/^1[34578][0-9]\d{8}$/.test(this.input_data.phone)),
             err_text: '请输入正确的联系电话'
           },
           area: {
-            err: !this.area,
+            err: !this.input_data.area,
             err_text: '请选择专注的领域'
           },
           intro: {
-            err: !this.intro || this.intro.length < 10 || this.intro.length > 30,
+            err: !this.input_data.intro || this.input_data.intro.length < 10 || this.input_data.intro.length > 30,
             err_text: '请选择专注的领域'
           },
           id_card_pic: {
-            err: !this.id_card_pic.value,
+            err: !this.input_data.id_card_pic.value,
             err_text: '请上传手持身份证正面照'
           },
           real_name: {
-            err: !this.real_name,
+            err: !this.input_data.real_name,
             err_text: '请输入真实姓名'
           },
           id_card_num: {
-            err: !this.id_card_num,
+            err: !this.input_data.id_card_num,
             err_text: '请输入身份证号'
           },
           organization_name: {
-            err: !this.organization_name,
+            err: !this.input_data.organization_name,
             err_text: '请输入组织名称'
           },
           organization_address: {
-            err: !this.organization_address,
+            err: !this.input_data.organization_address,
             err_text: '请输入组织地址'
           },
           agreement: {
@@ -248,6 +270,7 @@
     },
     methods: {
       viewAppear () {
+        console.log('viewAppear')
         const animation = weex.requireModule('animation')
         const animation_el = this.$refs['wrapper']
         animation.transition(animation_el, {
@@ -272,13 +295,13 @@
         })
       },
       pickArea () {
-        if (!this.area_arr || this.area_arr.length === 0) {
+        if (!this.input_data.area_arr || this.input_data.area_arr.length === 0) {
           this.initArea(this.pickArea)
           return false
         }
         picker.pick({
-          index: this.area_selected || 0,
-          items: this.area_label_arr,
+          index: this.input_data.area_selected || 0,
+          items: this.input_data.area_label_arr,
           textColor: '#333333',
           confirmTitle: '确认',
           cancelTitle: '取消',
@@ -288,8 +311,8 @@
           titleColor: '#333333'
         }, event => {
           if (event.result === 'success') {
-            this.area_selected = event.data
-            this.area = this.area_arr.filter(item => item.label === this.area_label_arr[event.data])[0].value
+            this.input_data.area_selected = event.data
+            this.input_data.area = this.input_data.area_arr.filter(item => item.label === this.input_data.area_label_arr[event.data])[0].value
           }
         })
       },
@@ -305,8 +328,8 @@
                   duration: 2
                 })
               } else if (res && !Boolean(res.error)) {
-                this.area_arr = res.data.category_list
-                this.area_label_arr = res.data.category_list.map((item) => {
+                this.input_data.area_arr = res.data.category_list
+                this.input_data.area_label_arr = res.data.category_list.map((item) => {
                   return item.label
                 })
                 callback && callback()
@@ -343,16 +366,16 @@
           token: '',
           account_type: this.account_type,
           name: this.account_type,
-          avatar: this.avatar.value,
-          intro: this.intro,
-          cid: this.area,
-          phone: this.phone,
-          real_name: this.real_name,
-          idcard: this.id_card_num,
-          id_img: this.id_card_pic.value,
-          company: this.organization_name,
-          address: this.organization_address,
-          link: this.organization_website
+          avatar: this.input_data.avatar.value,
+          intro: this.input_data.intro,
+          cid: this.input_data.area,
+          phone: this.input_data.phone,
+          real_name: this.input_data.real_name,
+          idcard: this.input_data.id_card_num,
+          id_img: this.input_data.id_card_pic.value,
+          company: this.input_data.organization_name,
+          address: this.input_data.organization_address,
+          link: this.input_data.organization_website
         }
         this.$fetchData(
           this.$domain + '/news/apply',
@@ -387,9 +410,24 @@
     },
     created () {
       this.initArea()
-      let account_type = storage.getItem('apply_account_type', event => {
+      storage.getItem('apply_account_type', event => {
         if (event.result.toString() === 'success' && event.data) {
           this.account_type = event.data
+          if (event.data.toString() === '1') { // 个人
+            storage.getItem('apply_form_person', eve => { // 获取个人表单缓存数据
+              if (eve.result.toString() === 'success' && eve.data) {
+                this.input_data = JSON.parse(eve.data)
+                this.removeStorage('apply_form_person')
+              }
+            })
+          } else { // 组织机构
+            storage.getItem('apply_form_organization', eve => { // 获取组织机构表单缓存数据
+              if (eve.result.toString() === 'success' && eve.data) {
+                this.input_data = JSON.parse(eve.data)
+                this.removeStorage('apply_form_organization')
+              }
+            })
+          }
           this.removeStorage('apply_account_type', (eve) => {
             if (eve.result.toString() !== 'success') {
               this.removeStorage('apply_account_type')
@@ -397,6 +435,15 @@
           })
         }
       })
+    },
+    beforeDestroy () {
+      let _obj = Object.assign({}, this.input_data)
+      console.log('_obj', _obj)
+      if (this.account_type.toString() === '1') { // 个人
+        storage.setItem('apply_form_person', JSON.stringify(_obj))
+      } else { // 组织机构
+        storage.setItem('apply_form_organization', JSON.stringify(_obj))
+      }
     }
   }
 </script>
