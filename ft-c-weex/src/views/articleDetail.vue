@@ -56,6 +56,15 @@ export default {
       index: 0
     }
   },
+  watch: {
+    '$route': function (val) {
+      const { platform } = weex.config.env
+      const isWeb = typeof (window) === 'object' && platform.toLowerCase() === 'web'
+      if (isWeb) {
+        window.location.reload()
+      }
+    }
+  },
   computed: {
     header: function () {
       if (!this.article) {
