@@ -20,8 +20,8 @@
       </div>
       <!-- 右 -->
       <div>
-        <text class="follow-button" v-if="!is_follow"  @click="clickFollow(data.uid)">关注</text>
-        <text class="follow-cancel-button" v-if="is_follow"  @click="clickUnFollow(data.uid)">已关注</text>
+        <text class="follow-button" v-if="!in_share&&!is_follow"  @click="clickFollow(data.uid)">关注</text>
+        <text class="follow-cancel-button" v-if="!in_share&&is_follow"  @click="clickUnFollow(data.uid)">已关注</text>
       </div>
     </div>
   </div>
