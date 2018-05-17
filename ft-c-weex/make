@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
-fi
-${SUDO} git pull
-${SUDO} npm run pack:web
-${SUDO} cp -r ./static ./release/web/static
