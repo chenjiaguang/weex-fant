@@ -50,6 +50,7 @@ import Elements from '../components/special_detail/Elements.vue'
 import ArticleList from '../components/special_detail/ArticleList.vue'
 import FixedWelcome from '../components/share/FixedWelcome.vue'
 import TabPage from '../components/ui/TabPage.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 const modal = weex.requireModule('modal')
@@ -76,10 +77,7 @@ export default {
   },
   methods: {
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
-      })
+      Download.click()
     },
     // 获取tabtitle
     getTabs () {

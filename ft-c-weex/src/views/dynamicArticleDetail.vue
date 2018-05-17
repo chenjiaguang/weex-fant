@@ -16,8 +16,8 @@ import Header from '../components/detail/Header.vue'
 import DynamicArticleContent from '../components/detail/DynamicArticleContent.vue'
 import Comments from '../components/share/Comments.vue'
 import FixedWelcome from '../components/share/FixedWelcome.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
-const modal = weex.requireModule('modal')
 export default {
   components: {
     detailHeader: Header,
@@ -47,10 +47,7 @@ export default {
   },
   methods: {
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
-      })
+      Download.click()
     }
   }
 }

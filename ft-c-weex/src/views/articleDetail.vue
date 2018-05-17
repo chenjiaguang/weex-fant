@@ -35,6 +35,7 @@ import ArticleRecommend from '../components/detail/ArticleRecommend.vue'
 import Comments from '../components/share/Comments.vue'
 import FixedWelcome from '../components/share/FixedWelcome.vue'
 import Lightbox from '../components/ui/Lightbox.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 const modal = weex.requireModule('modal')
@@ -93,10 +94,7 @@ export default {
       this.show = false
     },
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
-      })
+      Download.click()
     }
   },
   created () {
