@@ -35,7 +35,7 @@
     "vue": "^2.5.11",
     "vue-router": "^3.0.1",
     "weex-ui": "^0.6.3-beta1",
-    "weex-vue-render": "^0.12.26"
+    "weex-vue-render": "^1.0.17"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -5,7 +5,7 @@
   <div>
     <scroller ref="scroller" :style="{height:clientHeight+'px'}" v-if="specialinfo" show-scrollbar="false">
       <div ref="detailHeader" style="padding-left: 30px;padding-right: 30px;">
-        <detailHeader :special="specialinfo.special" style="margin-bottom:80px"></detailHeader>
+        <specialDetailHeader :special="specialinfo.special" style="margin-bottom:80px"></specialDetailHeader>
       </div>
       <div ref="scrollerFlag"></div>
       <tabPage
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import DetailHeader from '@/components/special_detail/DetailHeader.vue'
+import SpecialDetailHeader from '@/components/special_detail/SpecialDetailHeader.vue'
 import Elements from '@/components/special_detail/Elements.vue'
 import ArticleList from '@/components/special_detail/ArticleList.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
@@ -56,7 +56,7 @@ const dom = weex.requireModule('dom')
 var lastContentOffset = null
 export default {
   components: {
-    detailHeader: DetailHeader,
+    specialDetailHeader: SpecialDetailHeader,
     fixedWelcome: FixedWelcome,
     elements: Elements,
     articleList: ArticleList,
