@@ -1,10 +1,17 @@
 <template>
-  <text class="text" @click="$emit('clickInShare')">打开范团APP，查看全部精彩评论</text>
+  <div>
+    <text class="text" @click="$emit('clickInShare')" v-if="num==0">暂无评论，来范团APP写神评！</text>
+    <text class="text" @click="$emit('clickInShare')" v-if="num>0">打开范团APP，查看全部精彩评论</text>
+  </div>
 </template>
-
 <script>
 export default {
-  props: ['dynamic'],
+  props: {
+    num: {
+      type: [Number, String],
+      default: 0
+    }
+  },
   data () {
     return {}
   }

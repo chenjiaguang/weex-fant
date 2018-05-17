@@ -7,7 +7,7 @@
         <detailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
         <articleContent ref="articleContent" :article="article"  style="margin-bottom:100px"></articleContent>
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
-        <comments style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
+        <comments style="margin-bottom:188px" :num="article.comment_num" @clickInShare="clickInShare"></comments>
       </scroller>
       <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
     </div>

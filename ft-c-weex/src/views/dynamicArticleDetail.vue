@@ -5,7 +5,7 @@
     <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" >
       <detailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
       <dynamicArticleContent :dynamic="dynamic"  style="margin-bottom:60px"></dynamicArticleContent>
-      <comments  style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
+      <comments  style="margin-bottom:188px" :num="dynamic.comment_num" @clickInShare="clickInShare"></comments>
     </scroller>
     <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
   </div>
