@@ -19,20 +19,24 @@ import fetchData from '@/lib/fetchData'
 import FtNavigator from '@/lib/FtNavigator'
 
 let domain = ''
+let staticcdnDomain = ''
 switch (process.env.NODE_ENV) {
   case 'prod':
   case 'production':
   case 'release':
     domain = 'http://fanttest.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   case 'dev':
   case 'development':
   case 'test':
   case 'testing':
     domain = 'http://fanttest.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   default:
     domain = 'http://fanttest.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
 }
 Vue.use(Router)
 
@@ -117,6 +121,7 @@ const _router = new Router({
 })
 
 Vue.prototype.$domain = domain
+Vue.prototype.$staticcdnDomain = staticcdnDomain
 Vue.prototype.$fetchData = fetchData
 Vue.prototype.$FtNavigator = {
   push: (options) => FtNavigator.push(_router, options),
