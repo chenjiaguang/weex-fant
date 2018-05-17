@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import FtNavigator from '../../lib/FtNavigator'
 export default {
   props: {
     recommends: {
@@ -31,8 +30,7 @@ export default {
   },
   methods: {
     clickArticle (id) {
-      let _this = this
-      FtNavigator.navigate(_this, 'articleDetail', '/article/' + id)
+      this.$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=' + id})
     }
   }
 }

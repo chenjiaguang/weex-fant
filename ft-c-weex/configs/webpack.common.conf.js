@@ -18,6 +18,7 @@ const weexEntry = {
   'applyToutiaoSelect': helper.root('entrys/applyToutiaoSelect.js'),
   'applyToutiaoForm': helper.root('entrys/applyToutiaoForm.js'),
   'applyToutiaoSuccess': helper.root('entrys/applyToutiaoSuccess.js'),
+  'editPassword': helper.root('entrys/editPassword.js'),
 }
 
 const getEntryFileContent = (source, routerpath) => {

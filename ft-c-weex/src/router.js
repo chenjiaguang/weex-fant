@@ -14,6 +14,7 @@ import ApplyToutiaoSuccess from '@/views/applyToutiaoSuccess'
 import SpecialDetail from '@/views/specialDetail'
 import DynamicArticleDetail from '@/views/dynamicArticleDetail'
 import SetNewPassword from '@/views/setNewPassword'
+import EditPassword from '@/views/editPassword'
 import fetchData from '@/lib/fetchData'
 import FtNavigator from '@/lib/FtNavigator'
 
@@ -48,7 +49,7 @@ const _router = new Router({
       component: Home
     },
     {
-      path: '/article/:id',
+      path: '/article/detail',
       name: 'ArticleDetail',
       component: ArticleDetail
     },
@@ -58,7 +59,7 @@ const _router = new Router({
       component: SpecialDetail
     },
     {
-      path: '/dynamicArticle/:id',
+      path: '/dynamicArticle/detail',
       name: 'DynamicArticleDetail',
       component: DynamicArticleDetail
     },
@@ -106,6 +107,11 @@ const _router = new Router({
       path: '/set/new/password',
       name: 'SetNewPassword',
       component: SetNewPassword
+    },
+    {
+      path: '/edit/password',
+      name: 'EditPassword',
+      component: EditPassword
     }
   ]
 })
