@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Header from '@/components/detail/Header.vue'
+import DetailHeader from '@/components/detail/DetailHeader.vue'
 import DynamicArticleContent from '@/components/detail/DynamicArticleContent.vue'
 import Comments from '@/components/share/Comments.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
@@ -20,7 +20,7 @@ import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 export default {
   components: {
-    detailHeader: Header,
+    detailHeader: DetailHeader,
     dynamicArticleContent: DynamicArticleContent,
     comments: Comments,
     fixedWelcome: FixedWelcome

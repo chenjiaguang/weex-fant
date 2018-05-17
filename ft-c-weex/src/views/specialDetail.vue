@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import Header from '@/components/special_detail/Header.vue'
+import DetailHeader from '@/components/special_detail/DetailHeader.vue'
 import Elements from '@/components/special_detail/Elements.vue'
 import ArticleList from '@/components/special_detail/ArticleList.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
@@ -56,7 +56,7 @@ const dom = weex.requireModule('dom')
 var lastContentOffset = null
 export default {
   components: {
-    detailHeader: Header,
+    detailHeader: DetailHeader,
     fixedWelcome: FixedWelcome,
     elements: Elements,
     articleList: ArticleList,

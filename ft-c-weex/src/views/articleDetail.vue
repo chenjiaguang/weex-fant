@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Header from '@/components/detail/Header.vue'
+import DetailHeader from '@/components/detail/DetailHeader.vue'
 import ArticleContent from '@/components/detail/ArticleContent.vue'
 import ArticleRecommend from '@/components/detail/ArticleRecommend.vue'
 import Comments from '@/components/share/Comments.vue'
@@ -40,7 +40,7 @@ const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 export default {
   components: {
-    detailHeader: Header,
+    detailHeader: DetailHeader,
     articleContent: ArticleContent,
     articleRecommend: ArticleRecommend,
     comments: Comments,
