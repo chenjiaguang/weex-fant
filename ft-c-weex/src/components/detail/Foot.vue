@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 .foot-interactive-box{
   flex-direction: row;

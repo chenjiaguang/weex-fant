@@ -41,6 +41,6 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 </style>

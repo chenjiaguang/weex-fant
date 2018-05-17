@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 .article-box {
   border-bottom-width: 1px;

@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<style src='../../common.css'>
+<style src='@/common.css'>
 </style>
 <style scoped>
 

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Lightbox from '../../components/ui/Lightbox.vue'
+import Lightbox from '@/components/ui/Lightbox.vue'
 export default {
   components: {
     'lightbox': Lightbox

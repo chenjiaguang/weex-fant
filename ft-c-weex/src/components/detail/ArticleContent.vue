@@ -44,7 +44,7 @@ export default {
 function setIframeHeight (iframe) {
   if (iframe) {
     var iframeWin = iframe.contentWindow || (iframe.contentDocument && iframe.contentDocument.parentWindow)
-    if (iframeWin.document.body) {
+    if (iframeWin && iframeWin.document.body) {
       iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight
     }
   }

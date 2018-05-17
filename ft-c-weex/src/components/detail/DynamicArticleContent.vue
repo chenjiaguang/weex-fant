@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Lightbox from '../../components/ui/Lightbox.vue'
+import Lightbox from '@/components/ui/Lightbox.vue'
 const dom = weex.requireModule('dom')
 let i = 0
 export default {
