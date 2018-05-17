@@ -4,4 +4,4 @@ if [ "$(whoami)" != "root" ]; then
 fi
 ${SUDO} git pull
 ${SUDO} npm run pack:web
-${SUDO} cp ./static ./release/web/static
+${SUDO} cp -r ./static ./release/web/static
