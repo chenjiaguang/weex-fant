@@ -31,7 +31,7 @@
                 :key="i"
                 class="item-container"
                 :style="{height:listHeight+'px'}"
-                @scroll="scroll" offset-accuracy="10" @loadmore="loadArticlesMore(i)" loadmoreoffset="80">
+                @scroll="scroll" offset-accuracy="80" @loadmore="loadArticlesMore(i)" loadmoreoffset="200">
             <cell style="padding-left: 30px;padding-right: 30px;">
               <articleList :ref="`articleList${i}`"
               :articles="articles" :key="i" @clickInShare="clickInShare"></articleList>
@@ -125,8 +125,8 @@ export default {
     scroll (e) {
       if (lastContentOffset && e.contentOffset.y <= -this.scrollDistance && e.contentOffset.y <= lastContentOffset.y) {
         // 每隔一段时间，才检测一次触发
-        let now = Math.round(new Date().getTime() / 1000)
-        if (now > this.lastScrollDownTime + 2) {
+        let now = new Date().getTime()
+        if (now > this.lastScrollDownTime + 1500) {
           // let el = this.$refs.list0[0]
           let el = this.$refs.scrollerFlag
           dom.scrollToElement(el, { offset: 0 })
