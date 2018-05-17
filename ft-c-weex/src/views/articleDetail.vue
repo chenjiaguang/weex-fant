@@ -25,6 +25,7 @@
       </lightbox>
       <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
     </div>
+    <weixin :show.sync="showWeixin"></weixin>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ import ArticleDetailHeader from '@/components/detail/ArticleDetailHeader.vue'
 import ArticleContent from '@/components/detail/ArticleContent.vue'
 import ArticleRecommend from '@/components/detail/ArticleRecommend.vue'
 import Comments from '@/components/share/Comments.vue'
+import Weixin from '@/components/share/Weixin.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
 import Lightbox from '@/components/ui/Lightbox.vue'
 import Download from '@/lib/download'
@@ -45,7 +47,8 @@ export default {
     articleRecommend: ArticleRecommend,
     comments: Comments,
     fixedWelcome: FixedWelcome,
-    lightbox: Lightbox
+    lightbox: Lightbox,
+    weixin: Weixin
   },
   data () {
     return {
@@ -53,7 +56,8 @@ export default {
       recommends: null,
       show: true,
       clientHeight: 2000,
-      index: 0
+      index: 0,
+      showWeixin: false
     }
   },
   watch: {
@@ -93,7 +97,9 @@ export default {
       this.show = false
     },
     clickInShare () {
-      Download.click()
+      Download.click(() => {
+        this.showWeixin = true
+      })
     }
   },
   created () {

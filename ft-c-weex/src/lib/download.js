@@ -94,11 +94,10 @@ class download {
   //   }
   // },
 
-  static click () {
+  static click (weixinCallback) {
     let browser = this.browserInfo()
     if (browser.isWeixin || browser.isWeibo) {
-      alert('微信中打开 正在开发')
-      return false
+      weixinCallback()
     } else if (browser.isIphone) {
       window.location.href = 'fantuanc://'
       setTimeout(() => {

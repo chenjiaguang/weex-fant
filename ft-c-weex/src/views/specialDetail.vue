@@ -1,5 +1,4 @@
 // TODO:正在加载中及没有更多数据的提示
-// TODO:clickInShare事件；
 // TODO:暂时放弃修改:title左右滑动条出现问题
 <template>
   <div>
@@ -40,6 +39,7 @@
       </tabPage>
 
     </scroller>
+    <weixin :show.sync="showWeixin"></weixin>
     <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
   </div>
 </template>
@@ -49,6 +49,7 @@ import SpecialDetailHeader from '@/components/special_detail/SpecialDetailHeader
 import Elements from '@/components/special_detail/Elements.vue'
 import ArticleList from '@/components/special_detail/ArticleList.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
+import Weixin from '@/components/share/Weixin.vue'
 import TabPage from '@/components/ui/TabPage.vue'
 import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
@@ -60,7 +61,8 @@ export default {
     fixedWelcome: FixedWelcome,
     elements: Elements,
     articleList: ArticleList,
-    tabPage: TabPage
+    tabPage: TabPage,
+    weixin: Weixin
   },
   data () {
     return {
@@ -71,12 +73,15 @@ export default {
       clientHeight: 2000,
       listHeight: 2000,
       scrollDistance: 80,
-      lastScrollDownTime: 0
+      lastScrollDownTime: 0,
+      showWeixin: false
     }
   },
   methods: {
     clickInShare () {
-      Download.click()
+      Download.click(() => {
+        this.showWeixin = true
+      })
     },
     // 获取tabtitle
     getTabs () {
