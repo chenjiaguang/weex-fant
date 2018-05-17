@@ -1,23 +1,36 @@
 <template>
-  <div class="article-box">
-    <text class="article-content">{{article.content}}</text>
+  <div class="article-box"   @click="clickArticle(article.id)">
+    <text class="article-content">{{article.name}}</text>
     <div class="article-image-box" >
-      <image class="article-image" :src="image" v-for="(image,index) in article.images" :key="index" />
-      <text class="pic-num">{{article.picNum}}</text>
+      <image class="article-image" :src="article.covers[0].compress" resize="cover"/>
+      <text class="pic-num">{{article.atlas_num}}</text>
     </div>
     <div class="article-foot row flex-end">
       <text class="article-username">{{article.username}}</text>
-      <text class="article-dateTime" v-if="article.dateTime">{{article.dateTime}}</text>
-      <text class="article-commentNum">{{article.commentNum}}</text>
+      <text class="article-dateTime" v-if="article.time">{{article.time}}</text>
+      <text class="article-commentNum">{{article.read_num}}</text>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['article'],
+  props: {
+    article: {
+      type: Object
+    },
+    in_share: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {}
+  },
+  methods: {
+    clickArticle (id) {
+      this.$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=' + id})
+    }
   }
 }
 </script>
