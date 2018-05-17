@@ -66,16 +66,16 @@ class download {
   //   _body.removeChild(container)
   // },
 
-  static createDownloadContainer () {
-    let container = window.document.createElement('div')
-    container.id = 'download-tip-container'
-    container.style.width = '0'
-    container.style.height = '0'
-    container.style.overflow = 'visible'
-    let _body = window.document.getElementsByTagName('body')[0]
-    _body.appendChild(container)
-    return container
-  }
+  // static createDownloadContainer () {
+  //   let container = window.document.createElement('div')
+  //   container.id = 'download-tip-container'
+  //   container.style.width = '0'
+  //   container.style.height = '0'
+  //   container.style.overflow = 'visible'
+  //   let _body = window.document.getElementsByTagName('body')[0]
+  //   _body.appendChild(container)
+  //   return container
+  // }
 
   // click_back: () => {
   //   let browser = BrowserInfo()
@@ -97,7 +97,7 @@ class download {
   static click () {
     let browser = this.browserInfo()
     if (browser.isWeixin || browser.isWeibo) {
-      alert('is_weixin')
+      alert('微信中打开 正在开发')
       return false
     } else if (browser.isIphone) {
       window.location.href = 'fantuanc://'
