@@ -4,7 +4,7 @@
   <div>
     <div v-if="article&&article.content_type==0">
       <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;">
-        <detailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
+        <articleDetailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></articleDetailHeader>
         <articleContent ref="articleContent" :article="article"  style="margin-bottom:100px"></articleContent>
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
         <comments style="margin-bottom:188px" :num="article.comment_num" @clickInShare="clickInShare"></comments>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DetailHeader from '@/components/detail/DetailHeader.vue'
+import ArticleDetailHeader from '@/components/detail/ArticleDetailHeader.vue'
 import ArticleContent from '@/components/detail/ArticleContent.vue'
 import ArticleRecommend from '@/components/detail/ArticleRecommend.vue'
 import Comments from '@/components/share/Comments.vue'
@@ -40,7 +40,7 @@ const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 export default {
   components: {
-    detailHeader: DetailHeader,
+    articleDetailHeader: ArticleDetailHeader,
     articleContent: ArticleContent,
     articleRecommend: ArticleRecommend,
     comments: Comments,

@@ -3,7 +3,7 @@
 <template>
   <div v-if="dynamic">
     <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" >
-      <detailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
+      <dynamicArticleDetailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></dynamicArticleDetailHeader>
       <dynamicArticleContent :dynamic="dynamic"  style="margin-bottom:60px"></dynamicArticleContent>
       <comments  style="margin-bottom:188px" :num="dynamic.comment_num" @clickInShare="clickInShare"></comments>
     </scroller>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import DetailHeader from '@/components/detail/DetailHeader.vue'
+import DynamicArticleDetailHeader from '@/components/detail/DynamicArticleDetailHeader.vue'
 import DynamicArticleContent from '@/components/detail/DynamicArticleContent.vue'
 import Comments from '@/components/share/Comments.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
@@ -20,7 +20,7 @@ import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 export default {
   components: {
-    detailHeader: DetailHeader,
+    dynamicArticleDetailHeader: DynamicArticleDetailHeader,
     dynamicArticleContent: DynamicArticleContent,
     comments: Comments,
     fixedWelcome: FixedWelcome
