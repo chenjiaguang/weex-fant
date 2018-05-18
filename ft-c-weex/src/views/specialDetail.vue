@@ -1,11 +1,10 @@
 // TODO:正在加载中及没有更多数据的提示
-// TODO:clickInShare事件；
 // TODO:暂时放弃修改:title左右滑动条出现问题
 <template>
   <div>
     <scroller ref="scroller" :style="{height:clientHeight+'px'}" v-if="specialinfo" show-scrollbar="false">
       <div ref="detailHeader" style="padding-left: 30px;padding-right: 30px;">
-        <detailHeader :special="specialinfo.special" style="margin-bottom:80px"></detailHeader>
+        <specialDetailHeader :special="specialinfo.special" style="margin-bottom:80px"></specialDetailHeader>
       </div>
       <div ref="scrollerFlag"></div>
       <tabPage
@@ -31,7 +30,7 @@
                 :key="i"
                 class="item-container"
                 :style="{height:listHeight+'px'}"
-                @scroll="scroll" offset-accuracy="10" @loadmore="loadArticlesMore(i)" loadmoreoffset="80">
+                @scroll="scroll" offset-accuracy="50" @loadmore="loadArticlesMore(i)" loadmoreoffset="200">
             <cell style="padding-left: 30px;padding-right: 30px;">
               <articleList :ref="`articleList${i}`"
               :articles="articles" :key="i" @clickInShare="clickInShare"></articleList>
@@ -40,27 +39,30 @@
       </tabPage>
 
     </scroller>
+    <weixin :show.sync="showWeixin"></weixin>
     <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
   </div>
 </template>
 
 <script>
-import Header from '../components/special_detail/Header.vue'
-import Elements from '../components/special_detail/Elements.vue'
-import ArticleList from '../components/special_detail/ArticleList.vue'
-import FixedWelcome from '../components/share/FixedWelcome.vue'
-import TabPage from '../components/ui/TabPage.vue'
+import SpecialDetailHeader from '@/components/special_detail/SpecialDetailHeader.vue'
+import Elements from '@/components/special_detail/Elements.vue'
+import ArticleList from '@/components/special_detail/ArticleList.vue'
+import FixedWelcome from '@/components/share/FixedWelcome.vue'
+import Weixin from '@/components/share/Weixin.vue'
+import TabPage from '@/components/ui/TabPage.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
-const modal = weex.requireModule('modal')
 var lastContentOffset = null
 export default {
   components: {
-    detailHeader: Header,
+    specialDetailHeader: SpecialDetailHeader,
     fixedWelcome: FixedWelcome,
     elements: Elements,
     articleList: ArticleList,
-    tabPage: TabPage
+    tabPage: TabPage,
+    weixin: Weixin
   },
   data () {
     return {
@@ -70,15 +72,15 @@ export default {
       headerHeight: 2000,
       clientHeight: 2000,
       listHeight: 2000,
-      scrollDistance: 80,
-      lastScrollDownTime: 0
+      scrollDistance: 50,
+      lastScrollDownTime: 0,
+      showWeixin: false
     }
   },
   methods: {
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
+      Download.click(() => {
+        this.showWeixin = true
       })
     },
     // 获取tabtitle
@@ -128,22 +130,14 @@ export default {
     scroll (e) {
       if (lastContentOffset && e.contentOffset.y <= -this.scrollDistance && e.contentOffset.y <= lastContentOffset.y) {
         // 每隔一段时间，才检测一次触发
-        let now = Math.round(new Date().getTime() / 1000)
-        if (now > this.lastScrollDownTime + 2) {
-          modal.toast({
-            message: 'down',
-            duration: 0.3
-          })
+        let now = new Date().getTime()
+        if (now > this.lastScrollDownTime + 1500) {
           // let el = this.$refs.list0[0]
           let el = this.$refs.scrollerFlag
           dom.scrollToElement(el, { offset: 0 })
           this.lastScrollDownTime = now
         }
       } else if (lastContentOffset && lastContentOffset.y < this.scrollDistance && e.contentOffset.y >= this.scrollDistance) {
-        modal.toast({
-          message: 'up',
-          duration: 0.3
-        })
         dom.scrollToElement(this.$refs.detailHeader, { offset: 0 })
       }
       lastContentOffset = e.contentOffset

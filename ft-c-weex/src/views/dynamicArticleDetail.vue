@@ -1,33 +1,36 @@
-// TODO:clickInShare事件；
 // TODO:幻灯片模式时背景可滚动问题
 <template>
   <div v-if="dynamic">
     <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;" >
-      <detailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
+      <dynamicArticleDetailHeader :data="dynamic" style="margin-bottom:80px" @clickInShare="clickInShare"></dynamicArticleDetailHeader>
       <dynamicArticleContent :dynamic="dynamic"  style="margin-bottom:60px"></dynamicArticleContent>
-      <comments  style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
+      <comments  style="margin-bottom:188px" :num="dynamic.comment_num" @clickInShare="clickInShare"></comments>
     </scroller>
     <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
+    <weixin :show.sync="showWeixin"></weixin>
   </div>
 </template>
 
 <script>
-import Header from '../components/detail/Header.vue'
-import DynamicArticleContent from '../components/detail/DynamicArticleContent.vue'
-import Comments from '../components/share/Comments.vue'
-import FixedWelcome from '../components/share/FixedWelcome.vue'
+import DynamicArticleDetailHeader from '@/components/detail/DynamicArticleDetailHeader.vue'
+import DynamicArticleContent from '@/components/detail/DynamicArticleContent.vue'
+import Comments from '@/components/share/Comments.vue'
+import Weixin from '@/components/share/Weixin.vue'
+import FixedWelcome from '@/components/share/FixedWelcome.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
-const modal = weex.requireModule('modal')
 export default {
   components: {
-    detailHeader: Header,
+    dynamicArticleDetailHeader: DynamicArticleDetailHeader,
     dynamicArticleContent: DynamicArticleContent,
     comments: Comments,
-    fixedWelcome: FixedWelcome
+    fixedWelcome: FixedWelcome,
+    weixin: Weixin
   },
   data () {
     return {
-      dynamic: null
+      dynamic: null,
+      showWeixin: false
     }
   },
   created () {
@@ -47,9 +50,8 @@ export default {
   },
   methods: {
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
+      Download.click(() => {
+        this.showWeixin = true
       })
     }
   }

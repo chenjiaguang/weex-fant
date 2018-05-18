@@ -1,6 +1,7 @@
 <template>
   <div class="article-list">
     <articleImageOne  @clickInShare="clickInShare" v-for="(article,index) in articles" :key="index" :article="article" v-if="article.type==1"></articleImageOne>
+    <articleAtlas  @clickInShare="clickInShare" v-for="(article,index) in articles" :key="index" :article="article" v-if="article.type==2"></articleAtlas>
     <articleImageThree  @clickInShare="clickInShare" v-for="(article,index) in articles" :key="index" :article="article" v-if="article.type==3"></articleImageThree>
   </div>
 </template>
@@ -8,30 +9,22 @@
 <script>
 import ArticleImageOne from '../list/ArticleImageOne.vue'
 import ArticleImageThree from '../list/ArticleImageThree.vue'
+import ArticleAtlas from '../list/ArticleAtlas.vue'
 
 export default {
   components: {
     articleImageOne: ArticleImageOne,
-    articleImageThree: ArticleImageThree
+    articleImageThree: ArticleImageThree,
+    articleAtlas: ArticleAtlas
   },
   props: {
     articles: {
       type: Array
-    },
-    in_share: {
-      type: Boolean,
-      default: true
     }
   },
   data () {
     return {
     }
-  },
-  mounted () {
-    // console.log('mounted')
-    // if (this.articles == null || this.articles.length === 0) {
-    //   this.$emit('loadArticles')
-    // }
   },
   methods: {
     clickInShare () {
@@ -41,6 +34,6 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 </style>

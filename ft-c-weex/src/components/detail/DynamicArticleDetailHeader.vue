@@ -20,8 +20,8 @@
       </div>
       <!-- 右 -->
       <div>
-        <text class="follow-button" v-if="!is_follow"  @click="clickFollow(data.uid)">关注</text>
-        <text class="follow-cancel-button" v-if="is_follow"  @click="clickUnFollow(data.uid)">已关注</text>
+        <text class="follow-button" v-if="!in_share&&!is_follow"  @click="clickFollow(data.uid)">关注</text>
+        <text class="follow-cancel-button" v-if="!in_share&&is_follow"  @click="clickUnFollow(data.uid)">已关注</text>
       </div>
     </div>
   </div>
@@ -30,14 +30,12 @@
 <script>
 export default {
   props: {
-    data: Object,
-    in_share: {
-      type: Boolean,
-      default: true
-    }},
+    data: Object
+  },
   data () {
     return {
-      is_follow: false
+      is_follow: false,
+      in_share: this.$route.query.in_share === 'true'
     }
   },
   methods: {
@@ -65,7 +63,7 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 .title {
   color: #333333;

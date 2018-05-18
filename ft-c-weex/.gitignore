@@ -3,6 +3,7 @@ node_modules/
 /temp/
 .temp/
 release/
+platforms/
 /dist/
 npm-debug.log*
 yarn-debug.log*
@@ -15,3 +16,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+/make

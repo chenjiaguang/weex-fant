@@ -17,7 +17,7 @@
            :key="index"
            :ref="'wxc-tab-title-'+index"
            @click="setPage(index,v.url)"
-           :style="{ width: tabStyles.width +'px', height: tabStyles.height +'px', backgroundColor: currentPage === index ? tabStyles.activeBgColor : tabStyles.bgColor }"
+           :style="{ height: tabStyles.height +'px', backgroundColor: currentPage === index ? tabStyles.activeBgColor : tabStyles.bgColor }"
            :accessible="true"
            :aria-label="`${v.title?v.title:'标签'+index}`">
 

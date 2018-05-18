@@ -4,12 +4,12 @@
   <div>
     <div v-if="article&&article.content_type==0">
       <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;">
-        <detailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></detailHeader>
+        <articleDetailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></articleDetailHeader>
         <articleContent ref="articleContent" :article="article"  style="margin-bottom:100px"></articleContent>
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
-        <comments style="margin-bottom:188px" @clickInShare="clickInShare"></comments>
+        <comments style="margin-bottom:188px" :num="article.comment_num" @clickInShare="clickInShare"></comments>
       </scroller>
-      <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
+      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </div>
     <div v-if="article&&article.content_type==1">
       <lightbox
@@ -19,33 +19,36 @@
         :height="clientHeight"
         :image-list="imageList"
         @wxcLightboxOverlayClicked="wxcLightboxOverlayClicked">
-        <div slot="bottom"  class="bottom">
+        <div slot="bottom"  class="bottom" :style="{paddingBottom:this.in_share?'158px':'30px'}">
           <text class="bottom-text">{{(index+1)+'/'+imageList.length + ' ' + imageList[index].text}}</text>
         </div>
       </lightbox>
-      <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
+      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </div>
+    <weixin :show.sync="showWeixin"></weixin>
   </div>
 </template>
 
 <script>
-import Header from '../components/detail/Header.vue'
-import ArticleContent from '../components/detail/ArticleContent.vue'
-import ArticleRecommend from '../components/detail/ArticleRecommend.vue'
-import Comments from '../components/share/Comments.vue'
-import FixedWelcome from '../components/share/FixedWelcome.vue'
-import Lightbox from '../components/ui/Lightbox.vue'
+import ArticleDetailHeader from '@/components/detail/ArticleDetailHeader.vue'
+import ArticleContent from '@/components/detail/ArticleContent.vue'
+import ArticleRecommend from '@/components/detail/ArticleRecommend.vue'
+import Comments from '@/components/share/Comments.vue'
+import Weixin from '@/components/share/Weixin.vue'
+import FixedWelcome from '@/components/share/FixedWelcome.vue'
+import Lightbox from '@/components/ui/Lightbox.vue'
+import Download from '@/lib/download'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
-const modal = weex.requireModule('modal')
 export default {
   components: {
-    detailHeader: Header,
+    articleDetailHeader: ArticleDetailHeader,
     articleContent: ArticleContent,
     articleRecommend: ArticleRecommend,
     comments: Comments,
     fixedWelcome: FixedWelcome,
-    lightbox: Lightbox
+    lightbox: Lightbox,
+    weixin: Weixin
   },
   data () {
     return {
@@ -53,7 +56,9 @@ export default {
       recommends: null,
       show: true,
       clientHeight: 2000,
-      index: 0
+      index: 0,
+      showWeixin: false,
+      in_share: this.$route.query.in_share === 'true'
     }
   },
   watch: {
@@ -93,9 +98,8 @@ export default {
       this.show = false
     },
     clickInShare () {
-      modal.toast({
-        message: 'jump',
-        duration: 0.3
+      Download.click(() => {
+        this.showWeixin = true
       })
     }
   },
@@ -122,20 +126,41 @@ export default {
         // 如果是微信则读url
         let isWeixin = this.article.news_type === '2'
         if (isWeixin) {
-          let weixinUrl = encodeURIComponent(this.article.article_url)
-          stream.fetch({
-            method: 'GET',
-            url: this.$domain + '/jv/anonymous/call/get?url=' + weixinUrl,
-            type: 'json'
-          },
-          res => {
-            let text = res.data.data.result
-            // let rex = /<body id[^>]*>([\s\S]{100,})<\/body>/
-            // text = rex.exec(text)[0]
-            text = text.replace(/data-src/g, 'src')
-            text = text.replace(/\\n/, '')
-            this.$refs.articleContent.setContentFromWeixin(text)
-          })
+          if (this.article.article_url.indexOf('mp.weixin.qq.com') > -1) {
+            // 如果是微信链接
+            let weixinUrl = encodeURIComponent(this.article.article_url)
+            stream.fetch({
+              method: 'GET',
+              url: this.$domain + '/jv/anonymous/call/get?url=' + weixinUrl,
+              type: 'json'
+            },
+            res => {
+              let text = res.data.data.result
+              // let rex = /<body id[^>]*>([\s\S]{100,})<\/body>/
+              // text = rex.exec(text)[0]
+              text = text.replace(/data-src/g, 'src')
+              text = text.replace(/\\n/, '')
+              this.$refs.articleContent.setContentFromWeixin(text)
+            })
+          } else {
+            // 如果是范团微信内容链接
+            // https://fanttest.fantuanlife.com/index.html#/article/detail?article_id=65
+            let rex = /article_id=(\d+)/
+            let id = rex.exec(this.article.article_url)[1]
+            stream.fetch({
+              method: 'POST',
+              url: this.$domain + '/news/detail',
+              type: 'json',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({article_id: id, pn: 1})
+            },
+            res => {
+              let text = res.data.data.content
+              this.$refs.articleContent.setContentFromFantuanWeixin(text)
+            })
+          }
         } else {
           this.$nextTick(() => {
             this.$refs.articleContent.setContent(this.article.content)

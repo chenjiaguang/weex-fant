@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="" class="article-content toutiaohao" id="article-frame"></div>
-    <iframe style="margin-left:-30px;margin-right:-30px;width:750px" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
+    <iframe style="margin-left:-30px;margin-right:-30px;width:750px" height="1000" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
   </div>
 </template>
 
@@ -23,19 +23,51 @@ export default {
       // 删除多余元素，修改样式
       iframe.contentWindow.document.getElementById('activity-name').remove()
       iframe.contentWindow.document.getElementById('meta_content').remove()
+      if (iframe.contentWindow.document.getElementById('js_view_source')) {
+        iframe.contentWindow.document.getElementById('js_view_source').remove()
+      }
+
       iframe.contentWindow.document.getElementById('page-content').style.backgroundColor = '#ffffff'
       iframe.contentWindow.document.body.style.fontSize = '12px'
+
+      // 视频兼容
+      let els = iframe.contentWindow.document.getElementsByClassName('video_iframe')
+      for (const el of els) {
+        el.style.width = '100%'
+        let src = el.src
+        let rexW = /width=(\d+)/
+        let w = rexW.exec(src)[1]
+        let rexH = /height=(\d+)/
+        let h = rexH.exec(src)[1]
+        let newW = Math.round(els[0].clientWidth)
+        let newH = Math.round(h / w * newW)
+
+        src = src.replace('width=' + w, 'width=' + newW)
+        src = src.replace('height=' + h, 'height=' + newH)
+        els[0].src = src
+        el.style.height = newH + 'px'
+      }
 
       setIframeHeight(iframe)
       setInterval(() => {
         setIframeHeight(iframe)
       }, 1000)
     },
+    setContentFromFantuanWeixin (data) {
+      document.getElementById('article-frame-weixin').remove()
+      let div = document.getElementById('article-frame')
+      div.innerHTML = data
+
+      let _editor = document.getElementsByTagName('xmteditor"')[0]
+      if (_editor) {
+        _editor.style.display = 'block'
+      }
+    },
+
     setContent (data) {
       document.getElementById('article-frame-weixin').remove()
-      let iframe = document.getElementById('article-frame')
-      iframe.innerHTML = data
-      // iframe.style.zoom = '180%'
+      let div = document.getElementById('article-frame')
+      div.innerHTML = data
     }
   }
 }
@@ -44,7 +76,7 @@ export default {
 function setIframeHeight (iframe) {
   if (iframe) {
     var iframeWin = iframe.contentWindow || (iframe.contentDocument && iframe.contentDocument.parentWindow)
-    if (iframeWin.document.body) {
+    if (iframeWin && iframeWin.document.body) {
       iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight
     }
   }
@@ -53,6 +85,9 @@ function setIframeHeight (iframe) {
 </script>
 
 <style>
+.video_iframe{
+  width:100%
+}
 .weex-root, .weex-root * {
   color: unset;
   cursor: unset;

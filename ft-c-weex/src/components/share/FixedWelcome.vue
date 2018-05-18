@@ -1,8 +1,8 @@
 <template>
-  <div class="box">
+  <div v-if="in_share" class="box">
     <div class="row space-between center">
       <div class="left row">
-        <image class="logo" src="../../../static/images/logo.png" />
+        <image class="logo" src='@/../static/images/logo.png' />
         <div class="text-box column space-between">
           <text class="title">范团</text>
           <text class="desc">一手掌握海南新鲜事</text>
@@ -19,11 +19,13 @@
 export default {
   props: ['dynamic'],
   data () {
-    return {}
+    return {
+      in_share: this.$route.query.in_share === 'true'
+    }
   }
 }
 </script>
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 .box {
   position: fixed;

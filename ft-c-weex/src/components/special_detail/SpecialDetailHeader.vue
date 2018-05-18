@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style src='../../common.css' />
+<style src='@/common.css' />
 <style scoped>
 .image{
   margin-left: -30px;
