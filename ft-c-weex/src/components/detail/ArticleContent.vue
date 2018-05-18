@@ -23,8 +23,30 @@ export default {
       // 删除多余元素，修改样式
       iframe.contentWindow.document.getElementById('activity-name').remove()
       iframe.contentWindow.document.getElementById('meta_content').remove()
+      if (iframe.contentWindow.document.getElementById('js_view_source')) {
+        iframe.contentWindow.document.getElementById('js_view_source').remove()
+      }
+
       iframe.contentWindow.document.getElementById('page-content').style.backgroundColor = '#ffffff'
       iframe.contentWindow.document.body.style.fontSize = '12px'
+
+      // 视频兼容
+      let els = iframe.contentWindow.document.getElementsByClassName('video_iframe')
+      for (const el of els) {
+        el.style.width = '100%'
+        let src = el.src
+        let rexW = /width=(\d+)/
+        let w = rexW.exec(src)[1]
+        let rexH = /height=(\d+)/
+        let h = rexH.exec(src)[1]
+        let newW = Math.round(els[0].clientWidth)
+        let newH = Math.round(h / w * newW)
+
+        src = src.replace('width=' + w, 'width=' + newW)
+        src = src.replace('height=' + h, 'height=' + newH)
+        els[0].src = src
+        el.style.height = newH + 'px'
+      }
 
       setIframeHeight(iframe)
       setInterval(() => {
@@ -63,6 +85,9 @@ function setIframeHeight (iframe) {
 </script>
 
 <style>
+.video_iframe{
+  width:100%
+}
 .weex-root, .weex-root * {
   color: unset;
   cursor: unset;
