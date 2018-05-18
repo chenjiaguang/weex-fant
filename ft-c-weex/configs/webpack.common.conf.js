@@ -7,19 +7,8 @@ const vueLoaderConfig = require('./vue-loader.conf');
 const vueWebTemp = helper.rootNode(config.templateDir);
 const hasPluginInstalled = fs.existsSync(helper.rootNode(config.pluginFilePath));
 const isWin = /^win/.test(process.platform);
-const weexEntry = {
-  'index': helper.root('entry.js'),
-  'home': helper.root('entrys/home.js'),
-  'articleDetail': helper.root('entrys/articleDetail.js'),
-  'friend': helper.root('entrys/friend.js'),
-  'bindPhone': helper.root('entrys/bindPhone.js'),
-  'identifyPhone': helper.root('entrys/identifyPhone.js'),
-  'applyToutiao': helper.root('entrys/applyToutiao.js'),
-  'applyToutiaoSelect': helper.root('entrys/applyToutiaoSelect.js'),
-  'applyToutiaoForm': helper.root('entrys/applyToutiaoForm.js'),
-  'applyToutiaoSuccess': helper.root('entrys/applyToutiaoSuccess.js'),
-  'editPassword': helper.root('entrys/editPassword.js'),
-}
+const _weexEntry = require('../src/entrys/entryFiles')
+const weexEntry = _weexEntry
 
 const getEntryFileContent = (source, routerpath) => {
   let dependence = `import Vue from 'vue'\n`;
@@ -125,6 +114,14 @@ const webConfig = {
     // webpack 2.0 
     rules: useEslint.concat([
       {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1,
+          name: 'images/[hash:8].[name].[ext]'
+        }
+      },
+      {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader'
@@ -184,6 +181,14 @@ const weexConfig = {
    */
   module: {
     rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1,
+          name: 'images/[hash:8].[name].[ext]'
+        }
+      },
       {
         test: /\.js$/,
         use: [{

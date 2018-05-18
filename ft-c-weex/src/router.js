@@ -15,6 +15,10 @@ import SpecialDetail from '@/views/specialDetail'
 import DynamicArticleDetail from '@/views/dynamicArticleDetail'
 import SetNewPassword from '@/views/setNewPassword'
 import EditPassword from '@/views/editPassword'
+import UserAgreement from '@/views/userAgreement'
+import ToutiaoAgreement from '@/views/toutiaoAgreement'
+import CommunityRules from '@/views/communityRules'
+import CircleManageRules from '@/views/circleManageRules'
 import fetchData from '@/lib/fetchData'
 import FtNavigator from '@/lib/FtNavigator'
 
@@ -112,6 +116,26 @@ const _router = new Router({
       path: '/edit/password',
       name: 'EditPassword',
       component: EditPassword
+    },
+    {
+      path: '/user/agreement',
+      name: 'UserAgreement',
+      component: UserAgreement
+    },
+    {
+      path: '/toutiao/agreement',
+      name: 'ToutiaoAgreement',
+      component: ToutiaoAgreement
+    },
+    {
+      path: '/community/agreement',
+      name: 'CommunityRules',
+      component: CommunityRules
+    },
+    {
+      path: '/circle/agreement',
+      name: 'CircleManageRules',
+      component:CircleManageRules
     }
   ]
 })
