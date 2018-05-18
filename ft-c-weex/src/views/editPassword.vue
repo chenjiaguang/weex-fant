@@ -1,40 +1,90 @@
 <template>
   <div class="wrapper">
-    <input maxlength="24" class="input" type="tel" placeholder="原密码" v-model="password.value" @input="onInput" @change="onChange" />
-    <input maxlength="24" class="input" type="tel" placeholder="新密码" v-model="newPassword.value" @input="onInput" @change="onChange" />
-    <div class= ></div>
+    <input maxlength="24" class="input" type="password" placeholder="原密码" v-model="old_password" />
+    <input maxlength="24" class="input end" :type="this.inputType ? 'text' : 'password'" placeholder="新密码" v-model="new_password"/>
+    <image :src="this.inputType ? password_hidden : password_visible" @click="alterInputType" style="width:42px;height:33px;position:absolute;top:236px;right: 60px;"></image>
     <text class="text">密码长度至少6个字符，最多24个字符</text>
     <button text="确定" :disabled="false" class="bind-btn" :primary="true" :clickHandler="onBind"></button>
+    <text style="font-size: 24px;color: #1EB0FD;margin-top: 60px;" @click="showAlert">忘记原密码？</text>
   </div>
 </template>
 
 <script>
   import Button from '../components/Button.vue'
   import fetchData from '../lib/fetchData'
+  const modal = weex.requireModule('modal');
   export default {
     data () {
       return {
-        password: {
-          value: ''
-        },
-        newPassword: {
-          value: ''
-        },
-        verifyNewPassword: {
-          value: ''
-        }
+        inputType : false,
+        password_hidden  : '../static/images/password_hidden.png',
+        password_visible : '../static/images/password_visible.png',
+        old_password: '',
+        new_password: '',
+        password_change_url: this.$domain + '/user/password/change',
       }
     },
     components: { Button },
     methods: {
-      onInput (e) {
-        console.log('input', e)
-      },
-      onChange (e) {
-        console.log('change', e)
+      alterInputType ()
+      {
+//        let password=this.new_password;
+        this.inputType=!this.inputType;
+//        this.$nextTick(() =>{
+//          this.new_password = '';
+//          this.$nextTick(() =>{
+//            this.new_password = password
+//          })
+//        })
       },
       onBind () {
-        console.log('onBind')
+        console.log('onBind');
+        if (this.new_password.length < 6 || this.new_password.length > 24) {
+          modal.toast({
+            message: '新密码长度至少6个字符，最多24个字符',
+            duration: 2
+          });
+          return false
+        }
+
+        let sData = {
+          old_password: this.old_password,
+          new_password: this.new_password,
+          token: ''
+        };
+        this.$fetchData(
+                this.password_create_url,
+                sData,
+                {
+                  before: () => {
+                    this.disableRequestBind.value = true
+                  },
+                  after: () => {
+                    this.disableRequestBind.value = false
+                  },
+                  success: (res) => {
+                    if (res && Boolean(res.error) && res.msg) {
+                      modal.toast({
+                        message: res.msg,
+                        duration: 2
+                      })
+                    } else if (res && !res.error) {
+                      // 进入登陆后页面
+                    }
+                  },
+                  fail: (res) => {
+                    console.log('fail', res)
+                  }
+                }
+        )
+
+      },
+      showAlert () {
+        modal.alert({
+          message: "请联系客服处理\n客服电话：400-3663-2552",
+          okTitle: "确定"
+        }, function (value) {
+        })
       }
     }
   }
