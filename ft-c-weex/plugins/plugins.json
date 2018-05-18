@@ -1,24 +1,5 @@
 {
-  "ios": [
-    {
-      "type": "pod",
-      "name": "WeexNatMediaImage",
-      "version": "1.0.1"
-    },
-    {
-      "type": "pod",
-      "name": "WeexCamera",
-      "version": "0.0.1"
-    }
-  ],
+  "ios": [],
   "web": [],
-  "android": [
-    {
-      "type": "maven",
-      "groupId": "com.instapp.nat",
-      "name": "weex-plugin-media-image",
-      "version": "1.0.1",
-      "dependency": "com.instapp.nat:weex-plugin-media-image:1.0.1"
-    }
-  ]
+  "android": []
 }

@@ -114,14 +114,6 @@ const webConfig = {
     // webpack 2.0 
     rules: useEslint.concat([
       {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 1,
-          name: 'images/[hash:8].[name].[ext]'
-        }
-      },
-      {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader'
@@ -138,12 +130,27 @@ const webConfig = {
              * inline style prefixing.
              */
             optimizeSSR: false,
-            compilerModules: [{
-              postTransformNode: el => {
-                el.staticStyle = `$processStyle(${el.staticStyle})`
-                el.styleBinding = `$processStyle(${el.styleBinding})`
+            postcss: [
+              // to convert weex exclusive styles.
+              require('postcss-plugin-weex')(),
+              require('autoprefixer')({
+                browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+              }),
+              require('postcss-plugin-px2rem')({
+                // base on 750px standard.
+                rootValue: 75,
+                // to leave 1px alone.
+                minPixelValue: 1.01
+              })
+            ],
+            compilerModules: [
+              {
+                postTransformNode: el => {
+                  // to convert vnode for weex components.
+                  require('weex-vue-precompiler')()(el)
+                }
               }
-            }]
+            ]
             
           })
         }]
@@ -181,14 +188,6 @@ const weexConfig = {
    */
   module: {
     rules: [
-      {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 1,
-          name: 'images/[hash:8].[name].[ext]'
-        }
-      },
       {
         test: /\.js$/,
         use: [{

@@ -70,9 +70,6 @@ const config = {
         `
     }
   },
-  test: {
-    env: JSON.stringify('test')
-  },
   prod: {
     env: JSON.stringify('production'),
     /**
