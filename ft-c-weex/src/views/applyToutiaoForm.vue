@@ -1,6 +1,6 @@
 <template>
   <scroller ref="wrapper" class="apply-toutiao-wrapper" style="align-items:stretch;flex:1;" @viewappear="viewAppear">
-    <div style="align-items:center;flex:1;">
+    <div style="align-items:center;flex:1;" v-if="show_page">
       <div class="section">
         <text class="section-header">主要信息填写</text>
         <div :class="[validate && formErr.avatar.err ? 'err-item' : 'correct-item', 'form-item']" style="height:160px;justify-content: flex-end;padding-bottom:35px;">
@@ -155,6 +155,7 @@
   export default {
     data () {
       return {
+        show_page: false,
         account_type: 1,
         default_avatar: '../static/images/apply_default_avatar.png',
         default_pic: '../static/images/apply_default_pic.png',
@@ -349,6 +350,7 @@
       },
       goAgreement (event) {
         // 跳转范团头条用户协议
+        this.$FtNavigator.push({weex_url: 'toutiaoAgreement', web_url: '/toutiao/agreement'})
         event.stopPropagation()
       },
       removeStorage (key, callback) {
@@ -418,6 +420,9 @@
               if (eve.result.toString() === 'success' && eve.data) {
                 this.input_data = JSON.parse(eve.data)
                 this.removeStorage('apply_form_person')
+                this.show_page = true
+              } else {
+                this.show_page = true
               }
             })
           } else { // 组织机构
@@ -425,6 +430,9 @@
               if (eve.result.toString() === 'success' && eve.data) {
                 this.input_data = JSON.parse(eve.data)
                 this.removeStorage('apply_form_organization')
+                this.show_page = true
+              } else {
+                this.show_page = true
               }
             })
           }
@@ -433,6 +441,8 @@
               this.removeStorage('apply_account_type')
             }
           })
+        } else {
+          this.show_page = true
         }
       })
     },
@@ -520,6 +530,7 @@
     border-width:1px;
     border-color:#e5e5e5;
     margin-top:35px;
+    height:152px;
   }
   .err-textarea{
     font-size:32px;
@@ -534,6 +545,7 @@
     border-width:1px;
     border-color:#FF3F53;
     margin-top:35px;
+    height:152px;
   }
   .empty-input{
     font-weight:400;
