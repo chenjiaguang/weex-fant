@@ -30,14 +30,12 @@
 <script>
 export default {
   props: {
-    data: Object,
-    in_share: {
-      type: Boolean,
-      default: true
-    }},
+    data: Object
+  },
   data () {
     return {
-      is_follow: false
+      is_follow: false,
+      in_share: this.$route.query.in_share === 'true'
     }
   },
   methods: {

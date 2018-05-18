@@ -9,7 +9,7 @@
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
         <comments style="margin-bottom:188px" :num="article.comment_num" @clickInShare="clickInShare"></comments>
       </scroller>
-      <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
+      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </div>
     <div v-if="article&&article.content_type==1">
       <lightbox
@@ -19,11 +19,11 @@
         :height="clientHeight"
         :image-list="imageList"
         @wxcLightboxOverlayClicked="wxcLightboxOverlayClicked">
-        <div slot="bottom"  class="bottom">
+        <div slot="bottom"  class="bottom" :style="{paddingBottom:this.in_share?'158px':'30px'}">
           <text class="bottom-text">{{(index+1)+'/'+imageList.length + ' ' + imageList[index].text}}</text>
         </div>
       </lightbox>
-      <fixedWelcome  @clickInShare="clickInShare"></fixedWelcome>
+      <fixedWelcome @clickInShare="clickInShare"></fixedWelcome>
     </div>
     <weixin :show.sync="showWeixin"></weixin>
   </div>
@@ -57,7 +57,8 @@ export default {
       show: true,
       clientHeight: 2000,
       index: 0,
-      showWeixin: false
+      showWeixin: false,
+      in_share: this.$route.query.in_share === 'true'
     }
   },
   watch: {
@@ -125,20 +126,41 @@ export default {
         // 如果是微信则读url
         let isWeixin = this.article.news_type === '2'
         if (isWeixin) {
-          let weixinUrl = encodeURIComponent(this.article.article_url)
-          stream.fetch({
-            method: 'GET',
-            url: this.$domain + '/jv/anonymous/call/get?url=' + weixinUrl,
-            type: 'json'
-          },
-          res => {
-            let text = res.data.data.result
-            // let rex = /<body id[^>]*>([\s\S]{100,})<\/body>/
-            // text = rex.exec(text)[0]
-            text = text.replace(/data-src/g, 'src')
-            text = text.replace(/\\n/, '')
-            this.$refs.articleContent.setContentFromWeixin(text)
-          })
+          if (this.article.article_url.indexOf('mp.weixin.qq.com') > -1) {
+            // 如果是微信链接
+            let weixinUrl = encodeURIComponent(this.article.article_url)
+            stream.fetch({
+              method: 'GET',
+              url: this.$domain + '/jv/anonymous/call/get?url=' + weixinUrl,
+              type: 'json'
+            },
+            res => {
+              let text = res.data.data.result
+              // let rex = /<body id[^>]*>([\s\S]{100,})<\/body>/
+              // text = rex.exec(text)[0]
+              text = text.replace(/data-src/g, 'src')
+              text = text.replace(/\\n/, '')
+              this.$refs.articleContent.setContentFromWeixin(text)
+            })
+          } else {
+            // 如果是范团微信内容链接
+            // https://fanttest.fantuanlife.com/index.html#/article/detail?article_id=65
+            let rex = /article_id=(\d+)/
+            let id = rex.exec(this.article.article_url)[1]
+            stream.fetch({
+              method: 'POST',
+              url: this.$domain + '/news/detail',
+              type: 'json',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({article_id: id, pn: 1})
+            },
+            res => {
+              let text = res.data.data.content
+              this.$refs.articleContent.setContentFromFantuanWeixin(text)
+            })
+          }
         } else {
           this.$nextTick(() => {
             this.$refs.articleContent.setContent(this.article.content)

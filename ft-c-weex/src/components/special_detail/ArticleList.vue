@@ -20,21 +20,11 @@ export default {
   props: {
     articles: {
       type: Array
-    },
-    in_share: {
-      type: Boolean,
-      default: true
     }
   },
   data () {
     return {
     }
-  },
-  mounted () {
-    // console.log('mounted')
-    // if (this.articles == null || this.articles.length === 0) {
-    //   this.$emit('loadArticles')
-    // }
   },
   methods: {
     clickInShare () {

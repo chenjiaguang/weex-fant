@@ -19,18 +19,15 @@ export default {
   props: {
     recommends: {
       type: Array
-    },
-    in_share: {
-      type: Boolean,
-      default: true
     }},
   data () {
     return {
+      in_share: this.$route.query.in_share === 'true'
     }
   },
   methods: {
     clickArticle (id) {
-      this.$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=' + id})
+      this.$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?' + (this.in_share ? 'in_share=true&' : '') + 'id=' + id})
     }
   }
 }

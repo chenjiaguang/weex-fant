@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="" class="article-content toutiaohao" id="article-frame"></div>
-    <iframe style="margin-left:-30px;margin-right:-30px;width:750px" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
+    <iframe style="margin-left:-30px;margin-right:-30px;width:750px" height="1000" frameborder="0" src="about:blank" scrolling="no" id="article-frame-weixin"></iframe>
   </div>
 </template>
 
@@ -31,11 +31,21 @@ export default {
         setIframeHeight(iframe)
       }, 1000)
     },
+    setContentFromFantuanWeixin (data) {
+      document.getElementById('article-frame-weixin').remove()
+      let div = document.getElementById('article-frame')
+      div.innerHTML = data
+
+      let _editor = document.getElementsByTagName('xmteditor"')[0]
+      if (_editor) {
+        _editor.style.display = 'block'
+      }
+    },
+
     setContent (data) {
       document.getElementById('article-frame-weixin').remove()
-      let iframe = document.getElementById('article-frame')
-      iframe.innerHTML = data
-      // iframe.style.zoom = '180%'
+      let div = document.getElementById('article-frame')
+      div.innerHTML = data
     }
   }
 }

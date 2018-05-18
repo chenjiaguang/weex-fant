@@ -30,7 +30,7 @@
                 :key="i"
                 class="item-container"
                 :style="{height:listHeight+'px'}"
-                @scroll="scroll" offset-accuracy="80" @loadmore="loadArticlesMore(i)" loadmoreoffset="200">
+                @scroll="scroll" offset-accuracy="50" @loadmore="loadArticlesMore(i)" loadmoreoffset="200">
             <cell style="padding-left: 30px;padding-right: 30px;">
               <articleList :ref="`articleList${i}`"
               :articles="articles" :key="i" @clickInShare="clickInShare"></articleList>
@@ -72,7 +72,7 @@ export default {
       headerHeight: 2000,
       clientHeight: 2000,
       listHeight: 2000,
-      scrollDistance: 80,
+      scrollDistance: 50,
       lastScrollDownTime: 0,
       showWeixin: false
     }

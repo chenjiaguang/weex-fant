@@ -2,11 +2,11 @@
   <div class="index-wrapper">
     <text class="greeting">The env is ready!</text>
     <text @click="$FtNavigator.push({weex_url: 'home', web_url: '/home'})">Home</text>
-    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=7486'})">文章-图集</text>
-    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=13887'})">文章-普通</text>
-    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?id=14356'})">文章-微信</text>
-    <text @click="$FtNavigator.push({weex_url: 'specialDetail', web_url: '/special/detail'})">专题</text>
-    <text @click="$FtNavigator.push({weex_url: 'dynamicArticleDetail', web_url: '/dynamicArticle/detail?id=506'})">动态长文</text>
+    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?in_share=true&id=7486'})">文章-图集</text>
+    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?in_share=true&id=13887'})">文章-普通</text>
+    <text @click="$FtNavigator.push({weex_url: 'articleDetail', web_url: '/article/detail?in_share=true&id=14356'})">文章-微信</text>
+    <text @click="$FtNavigator.push({weex_url: 'specialDetail', web_url: '/special/detail?in_share=true'})">专题</text>
+    <text @click="$FtNavigator.push({weex_url: 'dynamicArticleDetail', web_url: '/dynamicArticle/detail?in_share=true&id=506'})">动态长文</text>
     <text @click="$FtNavigator.push({weex_url: 'friend', web_url: '/friend'})">friend</text>
     <text @click="$FtNavigator.push({weex_url: 'bindPhone', web_url: '/phone/bind'})">bindPhone</text>
     <text @click="$FtNavigator.push({weex_url: 'identifyPhone', web_url: '/phone/identify'})">identifyPhone</text>

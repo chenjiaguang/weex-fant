@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div v-if="in_share" class="box">
     <div class="row space-between center">
       <div class="left row">
         <image class="logo" src='@/../static/images/logo.png' />
@@ -19,7 +19,9 @@
 export default {
   props: ['dynamic'],
   data () {
-    return {}
+    return {
+      in_share: this.$route.query.in_share === 'true'
+    }
   }
 }
 </script>
