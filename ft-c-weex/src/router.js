@@ -28,18 +28,18 @@ switch (process.env.NODE_ENV) {
   case 'prod':
   case 'production':
   case 'release':
-    domain = 'http://fanttest.fantuanlife.com'
+    domain = 'https://fanttest.fantuanlife.com'
     staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   case 'dev':
   case 'development':
   case 'test':
   case 'testing':
-    domain = 'http://fanttest.fantuanlife.com'
+    domain = 'https://fanttest.fantuanlife.com'
     staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   default:
-    domain = 'http://fanttest.fantuanlife.com'
+    domain = 'https://fanttest.fantuanlife.com'
     staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
 }
 Vue.use(Router)
@@ -139,7 +139,7 @@ const _router = new Router({
     {
       path: '/circle/agreement',
       name: 'CircleManageRules',
-      component:CircleManageRules
+      component: CircleManageRules
     }
   ]
 })

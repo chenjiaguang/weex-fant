@@ -127,6 +127,7 @@ export default {
         let isWeixin = this.article.news_type === '2'
         if (isWeixin) {
           if (this.article.article_url.indexOf('mp.weixin.qq.com') > -1) {
+            console.log(this.article.article_url)
             // 如果是微信链接
             let weixinUrl = encodeURIComponent(this.article.article_url)
             stream.fetch({
