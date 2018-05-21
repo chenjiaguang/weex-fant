@@ -68,6 +68,8 @@ export default {
       document.getElementById('article-frame-weixin').remove()
       let div = document.getElementById('article-frame')
       div.innerHTML = data
+
+      // div.style.fontSize = '18px'
     }
   }
 }
@@ -88,7 +90,7 @@ function setIframeHeight (iframe) {
 .video_iframe{
   width:100%
 }
-.weex-root, .weex-root * {
+/* .weex-root, .weex-root * {
   color: unset;
   cursor: unset;
   direction: unset;
@@ -103,18 +105,15 @@ function setIframeHeight (iframe) {
   visibility: unset;
   white-space: unset;
   word-spacing: unset;
-}
+} */
 
-body {
-  font-size: 12px;
-}
 #preview {
   box-sizing: border-box;
   overflow-y: auto;
   margin: 0 auto;
   padding: 10px;
   width: 100%;
-  max-width: 375px;
+  max-width: 750px;
   min-height: 667px;
   max-height: 100vh;
   background-color: #ffffff;
@@ -142,34 +141,34 @@ body {
 .article-content h6{
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
-  font-size:17px;
+  font-size:34px;
 }
 .article-content.toutiaohao{
   line-height:1.5;
-  font-size:17px;
+  font-size:34px;
 }
 /*今日头条图片说明样式*/
 .article-content.toutiaohao .pgc-img-caption{
   text-align: center;
   color: #777;
-  font-size: 12px;
-  line-height: 16px;
-  margin-top: 8px;
-  margin-bottom: 15px;
+  font-size: 24px;
+  line-height: 32px;
+  margin-top: 16px;
+  margin-bottom: 30px;
 }
 .article-content.toutiaohao p{
-  margin:10px 0;
+  margin:20px 0;
 }
 .article-content.toutiaohao img{
   display:block;
-  margin:4px auto;
+  margin:8px auto;
 }
 .article-content.toutiaohao blockquote {
-  font-size: 16px;
-  line-height: 22px;
-  padding: 15px;
+  font-size: 32px;
+  line-height: 44px;
+  padding: 30px;
   color: #999;
-  border: 1px solid #E8E8E8;
+  border: 2px solid #E8E8E8;
   background: #F4F5F6;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -177,9 +176,9 @@ body {
   -webkit-margin-end: 0;
 }
 .article-content.toutiaohao blockquote p{
-  font-size: 16px;
-  line-height: 22px;
-  margin: 10px !important;
+  font-size: 32px;
+  line-height: 44px;
+  margin: 20px !important;
   color: #505050;
 }
 </style>
