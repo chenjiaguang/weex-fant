@@ -168,20 +168,22 @@ export default {
           })
         }
 
-        // 推荐阅读
-        stream.fetch({
-          method: 'POST',
-          url: this.$domain + '/jv/anonymous/newsarticle/recommendarticles',
-          type: 'json',
-          headers: {
-            'Content-Type': 'application/json'
+        if (this.in_share) {
+          // 推荐阅读
+          stream.fetch({
+            method: 'POST',
+            url: this.$domain + '/jv/anonymous/newsarticle/recommendarticles',
+            type: 'json',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'id': '54'})
           },
-          body: JSON.stringify({'id': '54'})
-        },
-        res => {
-          console.log(res)
-          this.recommends = res.data.data.list
-        })
+          res => {
+            console.log(res)
+            this.recommends = res.data.data.list
+          })
+        }
       }
     })
   }
