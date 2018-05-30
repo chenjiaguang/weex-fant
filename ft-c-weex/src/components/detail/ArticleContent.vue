@@ -70,7 +70,7 @@ export default {
       let div = document.getElementById('article-frame')
       div.innerHTML = data
 
-      // div.style.fontSize = '18px'
+      // div.style.fontSize = '32px'
     }
   }
 }
@@ -91,13 +91,13 @@ function setIframeHeight (iframe) {
 .video_iframe{
   width:100%
 }
-/* .weex-root, .weex-root * {
-  color: unset;
+.weex-root, .weex-root * {
+  /* color: unset;
   cursor: unset;
   direction: unset;
-  font-family: unset;
-  font-size: unset;
-  font-style: unset;
+  font-family: unset; */
+  /* font-size: unset; */
+  /* font-style: unset;
   font-variant: unset;
   font-weight: unset;
   line-height: unset;
@@ -105,8 +105,8 @@ function setIframeHeight (iframe) {
   text-indent: unset;
   visibility: unset;
   white-space: unset;
-  word-spacing: unset;
-} */
+  word-spacing: unset; */
+}
 
 #preview {
   box-sizing: border-box;
@@ -118,6 +118,10 @@ function setIframeHeight (iframe) {
   min-height: 667px;
   max-height: 100vh;
   background-color: #ffffff;
+}
+#article-frame *{
+  font-size: 32px;
+  line-height: 1.68;
 }
 .article-content img{
   max-width:100% !important;
