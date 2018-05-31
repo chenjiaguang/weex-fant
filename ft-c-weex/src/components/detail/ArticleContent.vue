@@ -123,52 +123,43 @@ function setIframeHeight (iframe) {
   font-size: 32px;
   line-height: 1.68;
 }
-.article-content img{
+#article-frame img{
   max-width:100% !important;
   display:block;
+  margin:30px 0;
 }
-.article-content strong{
+#article-frame strong{
   font-weight: bold;
 }
 
-.article-content img.default{
+#article-frame img.default{
   background:#f0f0f0;
 }
-.article-content p{
+#article-frame p{
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+  margin:20px 0;
 }
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4,
-.article-content h5,
-.article-content h6{
+#article-frame h1,
+#article-frame h2,
+#article-frame h3,
+#article-frame h4,
+#article-frame h5,
+#article-frame h6{
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
-  font-size:34px;
-}
-.article-content.toutiaohao{
-  line-height:1.5;
   font-size:34px;
 }
 /*今日头条图片说明样式*/
-.article-content.toutiaohao .pgc-img-caption{
+#article-frame .pgc-img-caption{
   text-align: center;
   color: #777;
   font-size: 24px;
-  line-height: 32px;
-  margin-top: 16px;
-  margin-bottom: 30px;
+  line-height: 24px;
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
-.article-content.toutiaohao p{
-  margin:20px 0;
-}
-.article-content.toutiaohao img{
-  display:block;
-  margin:8px auto;
-}
-.article-content.toutiaohao blockquote {
+#article-frame blockquote {
   font-size: 32px;
   line-height: 44px;
   padding: 30px;
@@ -180,7 +171,7 @@ function setIframeHeight (iframe) {
   -webkit-margin-start: 0;
   -webkit-margin-end: 0;
 }
-.article-content.toutiaohao blockquote p{
+#article-frame blockquote p{
   font-size: 32px;
   line-height: 44px;
   margin: 20px !important;
