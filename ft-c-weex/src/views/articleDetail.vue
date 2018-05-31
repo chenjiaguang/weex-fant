@@ -4,7 +4,7 @@
   <div>
     <div v-if="article&&article.content_type==0">
       <scroller style="padding-left: 30px;padding-right: 30px;padding-top: 30px;">
-        <articleDetailHeader :data="header" style="margin-bottom:80px" @clickInShare="clickInShare"></articleDetailHeader>
+        <articleDetailHeader :data="header" style="margin-bottom:36px" @clickInShare="clickInShare"></articleDetailHeader>
         <articleContent ref="articleContent" :article="article"  style="margin-bottom:100px"></articleContent>
         <articleRecommend :recommends="recommends" v-if="recommends" style="margin-bottom:60px" @clickInShare="clickInShare"></articleRecommend>
         <comments style="margin-bottom:188px" :num="article.comment_num" @clickInShare="clickInShare"></comments>
