@@ -10,8 +10,8 @@
       <text class="article-content" v-if="content.type==1">{{content.content}}</text>
     </div>
     <div class="foot-info-box">
-      <image class="image-map" :src="mapSrc" />
-      <text class="location">{{dynamic.location}}</text>
+      <image class="image-map" :src="mapSrc" v-if="dynamic.location"/>
+      <text class="location" v-if="dynamic.location">{{dynamic.location}}</text>
       <text class="viewNum">{{dynamic.read_num}}次浏览</text>
     </div>
     <lightbox
