@@ -124,7 +124,7 @@ function setIframeHeight (iframe) {
   line-height: 1.68;
 }
 #article-frame a:active{
-  background-color: #eeeeee;
+  background-color: #e5e5e5;
 }
 #article-frame img{
   max-width:100% !important;
