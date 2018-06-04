@@ -123,6 +123,9 @@ function setIframeHeight (iframe) {
   font-size: 32px;
   line-height: 1.68;
 }
+#article-frame a:active{
+  background-color: #eeeeee;
+}
 #article-frame img{
   max-width:100% !important;
   display:block;
