@@ -45,6 +45,7 @@ switch (process.env.NODE_ENV) {
 Vue.use(Router)
 
 const _router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
