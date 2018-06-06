@@ -33,20 +33,22 @@ export default {
 
       // 视频兼容
       let els = iframe.contentWindow.document.getElementsByClassName('video_iframe')
-      for (const el of els) {
-        el.style.width = '100%'
-        let src = el.src
-        let rexW = /width=(\d+)/
-        let w = rexW.exec(src)[1]
-        let rexH = /height=(\d+)/
-        let h = rexH.exec(src)[1]
-        let newW = Math.round(els[0].clientWidth)
-        let newH = Math.round(h / w * newW)
+      if (els.length > 0) {
+        for (const el of els) {
+          el.style.width = '100%'
+          let src = el.src
+          let rexW = /width=(\d+)/
+          let w = rexW.exec(src)[1]
+          let rexH = /height=(\d+)/
+          let h = rexH.exec(src)[1]
+          let newW = Math.round(els[0].clientWidth)
+          let newH = Math.round(h / w * newW)
 
-        src = src.replace('width=' + w, 'width=' + newW)
-        src = src.replace('height=' + h, 'height=' + newH)
-        els[0].src = src
-        el.style.height = newH + 'px'
+          src = src.replace('width=' + w, 'width=' + newW)
+          src = src.replace('height=' + h, 'height=' + newH)
+          els[0].src = src
+          el.style.height = newH + 'px'
+        }
       }
 
       setIframeHeight(iframe)
