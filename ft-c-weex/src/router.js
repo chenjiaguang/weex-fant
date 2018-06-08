@@ -24,14 +24,12 @@ import FtNavigator from '@/lib/FtNavigator'
 
 let domain = ''
 let staticcdnDomain = ''
-console.log('DATA_ENV_' + process.env.DATA_ENV)
-console.log('NODE_ENV_' + process.env.NODE_ENV)
-switch (process.env.NODE_ENV) {
+switch (process.env.DATA_ENV) {
   case 'prod':
   case 'production':
   case 'release':
-    domain = 'https://fanttest.fantuanlife.com'
-    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
+    domain = 'https://fant.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdn.fantuanlife.com'
     break
   case 'dev':
   case 'development':
@@ -41,8 +39,8 @@ switch (process.env.NODE_ENV) {
     staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   default:
-    domain = 'https://fanttest.fantuanlife.com'
-    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
+    domain = 'https://fant.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdn.fantuanlife.com'
 }
 Vue.use(Router)
 

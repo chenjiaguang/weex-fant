@@ -8,7 +8,7 @@
     "start": "npm run serve",
     "build": "webpack --env.NODE_ENV=common",
     "build:prod": "webpack --env.NODE_ENV=production",
-    "build:prod:web": "webpack --env.NODE_ENV=release  --env.DATA_ENV=release",
+    "build:prod:web": "webpack --env.NODE_ENV=release --env.DATA_ENV=release",
     "build:prod:web:test": "webpack --env.NODE_ENV=release --env.DATA_ENV=test",
     "build:plugin": "webpack --env.NODE_ENV=plugin",
     "clean:web": "rimraf ./release/web",
