@@ -20,14 +20,6 @@
 </style>
 
 <script>
-function setIframeHeight (iframe) {
-  if (iframe) {
-    var iframeWin = iframe.contentWindow || (iframe.contentDocument && iframe.contentDocument.parentWindow)
-    if (iframeWin && iframeWin.document.body) {
-      iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight
-    }
-  }
-};
 export default {
   name: 'Agreement',
   data () {
@@ -45,10 +37,6 @@ export default {
     let _type = this.$route.query && this.$route.query.type
     if (_type) {
       this.src = this.srcObject[_type]
-
-      setInterval(() => {
-        setIframeHeight(this.$refs.wrapper)
-      }, 1000)
     }
   }
 }

@@ -96,7 +96,8 @@ const devWebpackConfig = webpackMerge(commonConfig[0], {
      */
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': config.dev.env
+        'NODE_ENV': config.dev.env,
+        'DATA_ENV':JSON.stringify((process.argv.length>3&&process.argv[3]=="--env.DATA_ENV=test")?"test":"release") 
       }
     }),
     /*

@@ -17,9 +17,9 @@
     <text @click="$FtNavigator.push({weex_url: 'setNewPassword', web_url: '/set/new/password'})">设置新密码</text>
     <text @click="$FtNavigator.push({weex_url: 'editPassword', web_url: '/edit/password'})">修改密码</text>
     <text @click="$FtNavigator.push({weex_url: 'userAgreement', web_url: '/user/agreement'})">范团用户协议</text>
-    <text @click="$FtNavigator.push({weex_url: 'toutiaoAgreement', web_url: '/toutiao/agreement'})">范团头条号用户协议</text>
-    <text @click="$FtNavigator.push({weex_url: 'communityRules', web_url: '/community/agreement'})">范团社区规范</text>
-    <text @click="$FtNavigator.push({weex_url: 'circleManageRules', web_url: '/circle/agreement'})">范团圈子管理规范</text>
+    <text @click="$FtNavigator.push({weex_url: 'toutiaoAgreement', web_url: '/agreement?type=user'})">用户协议</text>
+    <text @click="$FtNavigator.push({weex_url: 'communityRules', web_url: '/agreement?type=activity'})">活动协议</text>
+    <text @click="$FtNavigator.push({weex_url: 'circleManageRules', web_url: '/agreement?type=author'})">作者协议</text>
   </div>
 </template>
 
