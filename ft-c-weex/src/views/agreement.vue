@@ -34,9 +34,9 @@ export default {
     return {
       src: '',
       srcObject: {
-        user: '/static/userAgreement.html',
-        author: '/static/authorAgreement.html',
-        activity: '/static/activityAgreement.html'
+        user: '../static/userAgreement.html',
+        author: '../static/authorAgreement.html',
+        activity: '../static/activityAgreement.html'
       }
     }
   },
