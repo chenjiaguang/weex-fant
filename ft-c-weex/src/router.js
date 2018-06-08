@@ -24,6 +24,7 @@ import FtNavigator from '@/lib/FtNavigator'
 
 let domain = ''
 let staticcdnDomain = ''
+console.log('env_' + process.env.DATA_ENV)
 switch (process.env.DATA_ENV) {
   case 'prod':
   case 'production':
