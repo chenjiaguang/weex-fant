@@ -9,7 +9,7 @@
     "build": "webpack --env.NODE_ENV=common",
     "build:prod": "webpack --env.NODE_ENV=production",
     "build:prod:web": "webpack --env.NODE_ENV=release",
-    "build:prod:web:test": "webpack --env.NODE_ENV=test",
+    "build:prod:web:dev": "webpack --env.NODE_ENV=dev",
     "build:plugin": "webpack --env.NODE_ENV=plugin",
     "clean:web": "rimraf ./release/web",
     "clean:ios": "rimraf ./release/ios",
@@ -23,7 +23,7 @@
     "pack:ios": "npm run clean:ios && weex build ios",
     "pack:android": "npm run clean:android && weex build android",
     "pack:web": "npm run clean:web && npm run build:prod:web",
-    "pack:web:test": "npm run clean:web && npm run build:prod:web:test"
+    "pack:web:dev": "npm run clean:web && npm run build:prod:web:dev"
   },
   "keywords": [
     "weex"
