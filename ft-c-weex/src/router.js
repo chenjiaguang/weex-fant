@@ -19,6 +19,7 @@ import UserAgreement from '@/views/userAgreement'
 import ToutiaoAgreement from '@/views/toutiaoAgreement'
 import CommunityRules from '@/views/communityRules'
 import CircleManageRules from '@/views/circleManageRules'
+import Agreement from '@/views/agreement'
 import fetchData from '@/lib/fetchData'
 import FtNavigator from '@/lib/FtNavigator'
 
@@ -55,6 +56,11 @@ const _router = new Router({
       path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/agreement',
+      name: 'Agreement',
+      component: Agreement
     },
     {
       path: '/article/detail',
