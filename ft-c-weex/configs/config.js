@@ -71,7 +71,7 @@ const config = {
     }
   },
   prod: {
-    env: process.env.DATA_ENV,
+    env: JSON.stringify(process.env.DATA_ENV),
     /**
      * Source Maps
      */
