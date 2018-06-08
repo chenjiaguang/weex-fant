@@ -28,8 +28,8 @@ switch (process.env.NODE_ENV) {
   case 'prod':
   case 'production':
   case 'release':
-    domain = 'https://fant.fantuanlife.com'
-    staticcdnDomain = 'https://staticcdn.fantuanlife.com'
+    domain = 'https://fanttest.fantuanlife.com'
+    staticcdnDomain = 'https://staticcdntest.fantuanlife.com'
     break
   case 'dev':
   case 'development':
