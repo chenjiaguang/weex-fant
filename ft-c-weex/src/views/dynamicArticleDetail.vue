@@ -30,7 +30,8 @@ export default {
   data () {
     return {
       dynamic: null,
-      showWeixin: false
+      showWeixin: false,
+      showAll: this.$route.query.showAll === 'true'
     }
   },
   created () {
@@ -41,7 +42,7 @@ export default {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'id': this.$route.query.id})
+      body: JSON.stringify({'id': this.$route.query.id, 'showAll': this.showAll})
     },
     res => {
       console.log(res)

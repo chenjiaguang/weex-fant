@@ -58,7 +58,8 @@ export default {
       clientHeight: 2000,
       index: 0,
       showWeixin: false,
-      in_share: this.$route.query.in_share === 'true'
+      in_share: this.$route.query.in_share === 'true',
+      showAll: this.$route.query.showAll === 'true'
     }
   },
   watch: {
@@ -117,7 +118,7 @@ export default {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'id': this.$route.query.id})
+      body: JSON.stringify({'id': this.$route.query.id, 'showAll': this.showAll})
     },
     res => {
       console.log(res)
@@ -146,20 +147,8 @@ export default {
           } else {
             // 如果是范团微信内容链接
             // https://fanttest.fantuanlife.com/index.html#/article/detail?article_id=65
-            let rex = /article_id=(\d+)/
-            let id = rex.exec(this.article.article_url)[1]
-            stream.fetch({
-              method: 'POST',
-              url: this.$domain + '/news/detail',
-              type: 'json',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({article_id: id, pn: 1})
-            },
-            res => {
-              let text = res.data.data.content
-              this.$refs.articleContent.setContentFromFantuanWeixin(text)
+            this.$nextTick(() => {
+              this.$refs.articleContent.setContentFromFantuanWeixin(this.article.content)
             })
           }
         } else {
@@ -177,7 +166,7 @@ export default {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'id': '54'})
+            body: JSON.stringify({'id': this.$route.query.id})
           },
           res => {
             console.log(res)

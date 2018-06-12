@@ -90,6 +90,9 @@ function setIframeHeight (iframe) {
 </script>
 
 <style>
+xmteditor{
+  max-width: 100%;
+}
 .video_iframe{
   width:100%
 }
