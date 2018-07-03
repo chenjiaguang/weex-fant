@@ -3,13 +3,10 @@
     <div class="row space-between center">
       <div class="left row">
         <image class="logo" src='@/../static/images/logo.png' />
-        <div class="text-box column space-between">
-          <text class="title">范团</text>
-          <text class="desc">一手掌握海南新鲜事</text>
-        </div>
+        <text class="text-box title">有范又有趣的海南生活圈</text>
       </div>
       <div class="right">
-        <text class="go" @click="$emit('clickInShare')">立即打开</text>
+        <image class="open" src='@/../static/images/open.png' />
       </div>
     </div>
   </div>
@@ -40,33 +37,38 @@ export default {
   background-color: #262626;
   opacity: 0.8;
 
-  z-index:99999;
+  z-index: 99999;
 
   /* border-top-width: 1px;
   border-top-color: #CBCBCB; */
 }
-.logo{
+.open {
+  height: 60px;
+  width: 180px;
+}
+.logo {
   height: 88px;
   width: 88px;
 }
-.go{
+.go {
   height: 60px;
   width: 180px;
   background-color: #ff3f53;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 32px;
   line-height: 60px;
   text-align: center;
 }
-.text-box{
-  margin-left: 20px
+.text-box {
+  margin-left: 20px;
 }
-.title{
-  color: #FFFFFF;
-  font-size: 36px;
+.title {
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 88px;
 }
-.desc{
-  color: #FFFFFF;
+.desc {
+  color: #ffffff;
   font-size: 24px;
 }
 </style>
