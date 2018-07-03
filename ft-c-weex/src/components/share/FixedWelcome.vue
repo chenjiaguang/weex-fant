@@ -6,7 +6,7 @@
         <text class="text-box title">有范又有趣的海南生活圈</text>
       </div>
       <div class="right">
-        <image class="open" src='@/../static/images/open.png' />
+        <image class="open" @click="$emit('clickInShare')" src='@/../static/images/open.png' />
       </div>
     </div>
   </div>
