@@ -35,10 +35,9 @@ export default {
   right: 0;
   bottom: 0;
   background-color: #262626;
-  opacity: 0.8;
 
   z-index: 99999;
-
+  background: rgba(0, 0, 0, 0.8);
   /* border-top-width: 1px;
   border-top-color: #CBCBCB; */
 }
