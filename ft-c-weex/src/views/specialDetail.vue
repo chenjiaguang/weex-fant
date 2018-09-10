@@ -52,6 +52,7 @@ import FixedWelcome from '@/components/share/FixedWelcome.vue'
 import Weixin from '@/components/share/Weixin.vue'
 import TabPage from '@/components/ui/TabPage.vue'
 import Download from '@/lib/download'
+import utils from '@/lib/utils'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 var lastContentOffset = null
@@ -158,7 +159,8 @@ export default {
       type: 'json',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({'id': this.$route.query.id, 'showAll': this.showAll})
     },
     res => {
       this.specialinfo = res.data.data
@@ -173,6 +175,12 @@ export default {
             console.log('this.headerHeight' + this.headerHeight)
           }
         })
+      })
+      utils.weixinShareSet({
+        title: res.data.data.shareInfo.shareTitle,
+        desc: res.data.data.shareInfo.shareContent,
+        url: res.data.data.shareInfo.shareUrl.split('#')[0] + '#' + res.data.data.shareInfo.shareUrl.split('#')[1],
+        imgUrl: res.data.data.shareInfo.shareImage
       })
     })
   }

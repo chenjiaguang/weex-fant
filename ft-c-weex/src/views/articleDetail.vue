@@ -38,6 +38,7 @@ import Weixin from '@/components/share/Weixin.vue'
 import FixedWelcome from '@/components/share/FixedWelcome.vue'
 import Lightbox from '@/components/ui/Lightbox.vue'
 import Download from '@/lib/download'
+import utils from '@/lib/utils'
 const stream = weex.requireModule('stream')
 const dom = weex.requireModule('dom')
 export default {
@@ -174,6 +175,12 @@ export default {
           })
         }
       }
+      utils.weixinShareSet({
+        title: res.data.data.shareInfo.shareTitle,
+        desc: res.data.data.shareInfo.shareContent,
+        url: res.data.data.shareInfo.shareUrl,
+        imgUrl: res.data.data.shareInfo.shareImage
+      })
     })
   }
 }
