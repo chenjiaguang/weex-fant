@@ -31,6 +31,13 @@ export default {
       iframe.contentWindow.document.getElementById('page-content').style.backgroundColor = '#ffffff'
       iframe.contentWindow.document.body.style.fontSize = '12px'
 
+      let els1 = iframe.contentWindow.document.getElementsByClassName('rich_media_area_extra')
+      if (els1.length > 0) {
+        for (const el of els1) {
+          el.remove()
+        }
+      }
+
       // 视频兼容
       let els = iframe.contentWindow.document.getElementsByClassName('video_iframe')
       if (els.length > 0) {
@@ -95,22 +102,6 @@ xmteditor{
 }
 .video_iframe{
   width:100%
-}
-.weex-root, .weex-root * {
-  /* color: unset;
-  cursor: unset;
-  direction: unset;
-  font-family: unset; */
-  /* font-size: unset; */
-  /* font-style: unset;
-  font-variant: unset;
-  font-weight: unset;
-  line-height: unset;
-  text-align: unset;
-  text-indent: unset;
-  visibility: unset;
-  white-space: unset;
-  word-spacing: unset; */
 }
 
 #preview {
